@@ -1,6 +1,6 @@
 package model;
 
-import view.MainWindow;
+import view.*;
 import jssc.*;
 
 public class SerialPortControll {
@@ -9,10 +9,15 @@ public class SerialPortControll {
 	
 	static SerialPort serialPort;
 	String stringBuffer = new String();
+	
+	public SerialPortControll() {
+		this._view = new MainWindow();
+		
+	}
 
 	public void getEventPort() {
 
-		serialPort = new SerialPort("COM6"); 
+		serialPort = new SerialPort("COM9"); 
 		try {
 			serialPort.openPort();//Open port
 			serialPort.setParams(38400, 8, 1, 0);//Set params
@@ -37,8 +42,12 @@ public class SerialPortControll {
 						byte buffer[] = serialPort.readBytes(10);
 						stringBuffer = new String(buffer); // Write data to stringBuffer
 
+						stringBuffer = stringBuffer.replace("\n\r", "");
+						
 						System.out.println(stringBuffer);
-						//_view.setjLMesswert(stringBuffer);
+//						_view.setjLMesswert(stringBuffer);
+//						_view.setjTMesswert(stringBuffer);
+//						_view.validate();
 						
 					}
 					catch (SerialPortException ex) {
@@ -63,5 +72,9 @@ public class SerialPortControll {
 				}
 			}
 		}
+	}
+	
+	public String getStringBuffer() {
+		return stringBuffer;
 	}
 }

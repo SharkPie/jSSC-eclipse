@@ -12,6 +12,7 @@ public class MainWindow extends JFrame{
 	
 	private JButton jBExit = new JButton("Beenden");
 	private JLabel jLMesswert = new JLabel("test");
+	private JTextField jTMesswert = new JTextField("test");
 	//...
 	
 	public MainWindow() {
@@ -25,14 +26,19 @@ public class MainWindow extends JFrame{
 		this.setLayout(new FlowLayout());
 		this.setBounds(200, 200, 500, 500);
 		
+		this.add(jTMesswert);
 		this.add(jLMesswert);
 		this.add(jBExit);
 		
 	}
 	
 
-	public void setjLMesswert(String Messwert) {
-		this.jLMesswert.setText(Messwert);
+	public void setjTMesswert(String messwert) {
+		this.jTMesswert.setText(messwert);
+	}
+
+	public void setjLMesswert(String messwert) {
+		this.jLMesswert.setText(messwert);
 	}
 	
 	

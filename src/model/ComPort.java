@@ -16,7 +16,7 @@ public class ComPort {
 
 	public String getComData() { // gibt ComPort Daten einmal aus
 		//SerialPort = new SerialPort(getComPorts());
-		SerialPort serialPort = new SerialPort("COM6");
+		SerialPort serialPort = new SerialPort("COM9");
 		try {
 			serialPort.openPort();// Open serial port
 			serialPort.setParams(38400, 8, 1, 0);// Set params.
@@ -24,6 +24,8 @@ public class ComPort {
 			byte[] buffer = serialPort.readBytes(10);// Read 10 bytes from serial port
 
 			stringBuffer = new String(buffer); // Write data to stringBuffer
+			
+			stringBuffer = stringBuffer.replace("\n\r", "");
 			
 			System.out.println(stringBuffer);
 
