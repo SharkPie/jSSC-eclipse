@@ -1,5 +1,5 @@
 package model;
-
+//dominik ist ein noob :D 
 import jssc.*;
 
 public class ComPort {
