@@ -14,10 +14,12 @@ public class ViewControl {
     
     private MainWindow _view;
     private ComPort _model;
+    private SerialPortControll _model02;
     
     public ViewControl() {
         this._view = new MainWindow();
         this._model = new ComPort();
+        this._model02 = new SerialPortControll();
         
         addListener();
     }
@@ -26,6 +28,7 @@ public class ViewControl {
     public void showView() {
         this._view.setVisible(true);
         //this._model.getComData(); //zum testen
+        this._model02.getEventPort();
     }
     
     private void addListener() {

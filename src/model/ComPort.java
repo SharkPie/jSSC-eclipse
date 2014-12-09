@@ -6,7 +6,7 @@ public class ComPort {
 
 	String stringBuffer = new String();
 
-	public String[] getComPorts() {
+	public String[] getComPorts() { //listet alle verfügbaren ComPorts auf
 		String[] portNames = SerialPortList.getPortNames();
 		for (int i = 0; i < portNames.length; i++) {
 			System.out.println(portNames[i]);
@@ -14,7 +14,7 @@ public class ComPort {
 		return portNames;
 	}
 
-	public String getComData() {
+	public String getComData() { // gibt ComPort Daten einmal aus
 		//SerialPort = new SerialPort(getComPorts());
 		SerialPort serialPort = new SerialPort("COM6");
 		try {
