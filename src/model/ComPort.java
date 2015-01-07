@@ -16,7 +16,7 @@ public class ComPort {
 
 	public String getComData() { // gibt ComPort Daten einmal aus
 		//SerialPort = new SerialPort(getComPorts());
-		SerialPort serialPort = new SerialPort("COM9");
+		SerialPort serialPort = new SerialPort("COM5");
 		try {
 			serialPort.openPort();// Open serial port
 			serialPort.setParams(38400, 8, 1, 0);// Set params.

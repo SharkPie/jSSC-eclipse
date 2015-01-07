@@ -11,8 +11,9 @@ public class MainWindow extends JFrame{
 	
 	
 	private JButton jBExit = new JButton("Beenden");
+	private JButton jBRefresh = new JButton("refresh");
 	private JLabel jLMesswert = new JLabel("test");
-	private JTextField jTMesswert = new JTextField("test");
+	private JTextField jTMesswert = new JTextField("ausgabe234452");
 	//...
 	
 	public MainWindow() {
@@ -28,6 +29,7 @@ public class MainWindow extends JFrame{
 		
 		this.add(jTMesswert);
 		this.add(jLMesswert);
+		this.add(jBRefresh);
 		this.add(jBExit);
 		
 	}
@@ -44,6 +46,12 @@ public class MainWindow extends JFrame{
 	
 	public void setExitButtonListener(ActionListener al) {
 		this.jBExit.addActionListener(al);
+	}
+
+	public void setRefreshButtonListener(ActionListener al) {
+		this.jBRefresh.addActionListener(al);
+		// TODO Auto-generated method stub
+		
 	}
 	
 

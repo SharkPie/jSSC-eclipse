@@ -2,6 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre8"/>
-	<classpathentry kind="lib" path="C:/Users/Dominik/Downloads/jSSC-2.6.0-Release/jssc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/toast/Documents/GitHub/jSSC-eclipse/lib/jSSC-2.8.0-Release/jssc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
