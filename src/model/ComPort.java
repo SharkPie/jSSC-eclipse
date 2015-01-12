@@ -27,7 +27,7 @@ public class ComPort {
 			
 			stringBuffer = stringBuffer.replace("\n\r", "");
 			
-			System.out.println(stringBuffer);
+			//System.out.println(stringBuffer);
 
 			serialPort.closePort();// Close serial port
 		} catch (SerialPortException ex) {
