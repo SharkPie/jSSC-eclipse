@@ -9,9 +9,6 @@ import javax.swing.*;
 
 public class DrawBoard extends JFrame{
 	private JPanel zeichenflaeche = new JPanel();
-	//private GridBagLayout gridBagLayout = new GridBagLayout();
-	//private JPanel canvasPane = new JPanel();
-	//private JPanel menuPane = new JPanel();
 
 	public DrawBoard(){
 		super("DruchflussBrett");
@@ -30,34 +27,22 @@ public class DrawBoard extends JFrame{
 		zeichenflaeche.setBounds(7, 2, 500, 500);
 		zeichenflaeche.setBackground(Color.WHITE);
 		contenPane.add(zeichenflaeche);
+		//Anfang des Menues
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
-		JMenuItem menuItem = new JMenuItem("Select ComPort");
+		JMenuItem menuItemSelect = new JMenuItem("Select ComPort");
+		JMenuItem menuItemClose = new JMenuItem("Close ComPort");
 		
-		menu.add(menuItem);
+		menu.add(menuItemSelect);
+		menu.add(menuItemClose);
 		menuBar.add(menu);
 		setJMenuBar(menuBar);
+		//Ende des Menues
 		//Ende der Komponenten
 		
 		setResizable(false);
 		setVisible(true);
-//		this.getContentPane().setLayout(gridBagLayout);
-//		GridBagConstraints constraints = new GridBagConstraints();
-//		constraints.fill = constraints.BOTH;
-//		constraints.weightx = 2;
-//		constraints.gridx = 0;
-//		constraints.gridy = 0;
-//		constraints.anchor = constraints.PAGE_START;
-//		gridBagLayout.addLayoutComponent(canvasPane, constraints);
-//		constraints.weightx = 1;
-//		constraints.gridx = 1;
-//		gridBagLayout.addLayoutComponent(menuPane, constraints);
-//		menuPane.setLayout(new GridLayout(5, 2));
-//		
-//		
-//		pack();
-//		setLocationRelativeTo(null);
-//		setVisible(true);
+
 	}
 	
 	public void paint(Graphics g)
