@@ -14,6 +14,7 @@ public class DrawBoard extends JFrame{
 	//private JPanel menuPane = new JPanel();
 
 	public DrawBoard(){
+		super("DruchflussBrett");
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		int frameWidth = 520;
 		int frameHeight = 543;
@@ -29,6 +30,13 @@ public class DrawBoard extends JFrame{
 		zeichenflaeche.setBounds(7, 2, 500, 500);
 		zeichenflaeche.setBackground(Color.WHITE);
 		contenPane.add(zeichenflaeche);
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menu = new JMenu("File");
+		JMenuItem menuItem = new JMenuItem("Select ComPort");
+		
+		menu.add(menuItem);
+		menuBar.add(menu);
+		setJMenuBar(menuBar);
 		//Ende der Komponenten
 		
 		setResizable(false);
@@ -52,5 +60,13 @@ public class DrawBoard extends JFrame{
 //		setVisible(true);
 	}
 	
-	
+	public void paint(Graphics g)
+	{
+		super.paint(g);
+		Graphics2D graphics2D = (Graphics2D)g;
+		graphics2D.setBackground(Color.WHITE);
+		graphics2D.clearRect(0, 0, 400, 200);
+		graphics2D.setColor(Color.BLUE);
+		graphics2D.draw3DRect(40, 105, 100, 60, true);
+	}
 }
