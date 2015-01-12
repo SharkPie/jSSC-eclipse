@@ -15,6 +15,7 @@ public class ViewControl implements Observer{
     private MainWindow _view;
     private SerialPortControll _model;
     private ComPort _model02;
+    private DrawBoard drawBoard;
     
     public ViewControl() {
         this._view = new MainWindow();
@@ -27,11 +28,6 @@ public class ViewControl implements Observer{
     
     public void showView() {
         this._view.setVisible(true);
-        //this._model02.getComData(); //zum testen
-        //this._model.getEventPort();
-        //this._view.setjTMesswert(this._model02.getComData());
-        //_model02.getComData();
-        //_model02.getComData();
         this._view.validate();
         
     }
@@ -52,20 +48,29 @@ public class ViewControl implements Observer{
     	
     }
     
-  
-    class ComEventListener implements EventListener {
+    class RefreshButtonListener implements ActionListener {
 
-
-		public void actionPerformed(ActionEvent e) {
-			System.exit(0);
-		}
-		
+    	public void actionPerformed(ActionEvent e) {
+    		//this._view.setjTMesswert(this._model02.getComData());
+//    		DrawBoard newDrawBoard = new DrawBoard();
+//    		Ausgabe ausgabe = new Ausgabe();
+//    		ausgabe.addObserver(newDrawBoard);
+//    		newDrawBoard.showView();
+//    		ausgabe.run();
+    		//setDrawBoardView();
+    	}
+    	
+    }
+    
+    public void setDrawBoardView(){
+    	this.drawBoard = new DrawBoard();
+    	this.drawBoard.showView();
     	
     }
 
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-        this._view.setjTMesswert(arg1.toString());
+        drawBoard.setComportTextField1(arg1.toString());
 		//System.out.println("test :" + arg1);
 	}
     

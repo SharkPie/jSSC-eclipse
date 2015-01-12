@@ -6,7 +6,7 @@ import java.util.Observer;
 
 import javax.swing.*;
 
-public class DrawBoard extends JFrame /*implements Observer*/{
+public class DrawBoard extends JFrame{
 	
 	private JPanel jPanelBorder;
 	private JPanel zeichenflaeche;
@@ -24,12 +24,18 @@ public class DrawBoard extends JFrame /*implements Observer*/{
 		setSize(710,600);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setResizable(true);
-		setVisible(true);
+		//setVisible(true);
 		setLocation(330, 80);
 		initLayout();
 		
 
 	}
+	
+	public void showView(){
+		setVisible(true);
+		validate();
+	}
+	
 	private void initLayout(){
 		jPanelBorder = new JPanel();
 		jPanelBorder.setLayout(new BorderLayout());
@@ -50,7 +56,7 @@ public class DrawBoard extends JFrame /*implements Observer*/{
 		
 
 		zeichenflaeche = new JPanel(){
-		@Override
+//		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			Graphics2D graphics2D = (Graphics2D)g;
@@ -75,11 +81,9 @@ public class DrawBoard extends JFrame /*implements Observer*/{
 		datenPanel.add(comportTextField3);
 		jPanelBorder.add(datenPanel, BorderLayout.SOUTH);
 	}
-//	@Override
-//	public void update(Observable o, Object arg) {
-//		// TODO Auto-generated method stub
-//		//comportTextField1.setText(arg.toString());
-//		
-//	}
-//
+
+	
+	public void setComportTextField1(String textFieldContent1) {
+		comportTextField1.setText(textFieldContent1);
+	}
 }

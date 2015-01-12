@@ -10,11 +10,11 @@ public class Main {
 		public static void main(String[] args) {
 			System.out.println("Start");
 			viewControl = new ViewControl();
-			//Ausgabe ausgabe = new Ausgabe();
-			//ausgabe.addObserver(viewControl);
-			viewControl.showView();
-			//ausgabe.addObserver(drawBoard);
-			//ausgabe.run();
+			Ausgabe ausgabe = new Ausgabe();
+			ausgabe.addObserver(viewControl);
+			//viewControl.showView();
+			viewControl.setDrawBoardView();
+			ausgabe.run();
 			
 
 			
