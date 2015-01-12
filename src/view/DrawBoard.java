@@ -1,34 +1,41 @@
 package view;
 
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.*;
 
-public class DrawBoard extends JFrame{
-	private JPanel zeichenflaeche = new JPanel();
-
+public class DrawBoard extends JFrame /*implements Observer*/{
+	
+	private JPanel jPanelBorder;
+	private JPanel zeichenflaeche;
+	private JPanel datenPanel;
+	private JLabel comportTextFieldLabel1 = new JLabel("Comport 1");
+	private JLabel comportTextFieldLabel2 = new JLabel("Comport 2");
+	private JLabel comportTextFieldLabel3 = new JLabel("Comport 3");
+	private JTextField comportTextField1 = new JTextField("Comport TextField1");
+	private JTextField comportTextField2 = new JTextField("Comport TextField2");;
+	private JTextField comportTextField3 = new JTextField("Comport TextField3");;
+	
+	
 	public DrawBoard(){
 		super("DruchflussBrett");
+		setSize(710,600);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		int frameWidth = 520;
-		int frameHeight = 543;
-		setSize(frameWidth, frameHeight);
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		int x = (dimension.width - getSize().width) / 2;
-		int y = (dimension.height - getSize().height) / 2;
-		setLocation(x, y);
-		Container contenPane = getContentPane();
-		getContentPane().setLayout(null);
+		setResizable(true);
+		setVisible(true);
+		setLocation(330, 80);
+		initLayout();
 		
-		//Anfang der Komponenten
-		zeichenflaeche.setBounds(7, 2, 500, 500);
-		zeichenflaeche.setBackground(Color.WHITE);
-		contenPane.add(zeichenflaeche);
+
+	}
+	private void initLayout(){
+		jPanelBorder = new JPanel();
+		jPanelBorder.setLayout(new BorderLayout());
+		add(jPanelBorder);
 		//Anfang des Menues
-		JMenuBar menuBar = new JMenuBar();
+	    JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("File");
 		JMenuItem menuItemSelect = new JMenuItem("Select ComPort");
 		JMenuItem menuItemClose = new JMenuItem("Close ComPort");
@@ -37,21 +44,42 @@ public class DrawBoard extends JFrame{
 		menu.add(menuItemClose);
 		menuBar.add(menu);
 		setJMenuBar(menuBar);
-		//Ende des Menues
-		//Ende der Komponenten
+		jPanelBorder.add(menuBar, BorderLayout.NORTH);
 		
-		setResizable(false);
-		setVisible(true);
+		//Ende des Menues
+		
 
+		zeichenflaeche = new JPanel(){
+		@Override
+		protected void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			Graphics2D graphics2D = (Graphics2D)g;
+			graphics2D.setBackground(Color.WHITE);
+			graphics2D.setColor(Color.blue);
+			graphics2D.drawRect(50, 50, 100, 50);
+		}
+		};
+		zeichenflaeche.setBackground(Color.WHITE);
+		jPanelBorder.add(zeichenflaeche, BorderLayout.CENTER);
+		
+		datenPanel = new JPanel();
+		datenPanel.setLayout(new GridLayout(2,6));
+		comportTextField1.setEditable(false);
+		comportTextField2.setEditable(false);
+		comportTextField3.setEditable(false);
+		datenPanel.add(comportTextFieldLabel1);
+		datenPanel.add(comportTextFieldLabel2);
+		datenPanel.add(comportTextFieldLabel3);
+		datenPanel.add(comportTextField1);
+		datenPanel.add(comportTextField2);
+		datenPanel.add(comportTextField3);
+		jPanelBorder.add(datenPanel, BorderLayout.SOUTH);
 	}
-	
-	public void paint(Graphics g)
-	{
-		super.paint(g);
-		Graphics2D graphics2D = (Graphics2D)g;
-		graphics2D.setBackground(Color.WHITE);
-		graphics2D.clearRect(0, 0, 400, 200);
-		graphics2D.setColor(Color.BLUE);
-		graphics2D.draw3DRect(40, 105, 100, 60, true);
-	}
+//	@Override
+//	public void update(Observable o, Object arg) {
+//		// TODO Auto-generated method stub
+//		//comportTextField1.setText(arg.toString());
+//		
+//	}
+//
 }

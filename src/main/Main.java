@@ -1,5 +1,6 @@
 package main;
 
+import view.DrawBoard;
 import controller.*;
 
 public class Main {
@@ -9,10 +10,11 @@ public class Main {
 		public static void main(String[] args) {
 			System.out.println("Start");
 			viewControl = new ViewControl();
-			Ausgabe ausgabe = new Ausgabe();
-			ausgabe.addObserver(viewControl);
+			//Ausgabe ausgabe = new Ausgabe();
+			//ausgabe.addObserver(viewControl);
 			viewControl.showView();
-			ausgabe.run();
+			//ausgabe.addObserver(drawBoard);
+			//ausgabe.run();
 			
 
 			
