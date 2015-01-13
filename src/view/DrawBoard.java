@@ -11,9 +11,9 @@ public class DrawBoard extends JFrame{
 	private JPanel jPanelBorder;
 	private JPanel zeichenflaeche;
 	private JPanel datenPanel;
-	private JLabel comportTextFieldLabel1 = new JLabel("Comport 1");
-	private JLabel comportTextFieldLabel2 = new JLabel("Comport 2");
-	private JLabel comportTextFieldLabel3 = new JLabel("Comport 3");
+	private JLabel comportTextFieldLabel1 = new JLabel("Sensor 1");
+	private JLabel comportTextFieldLabel2 = new JLabel("Sensor 2");
+	private JLabel comportTextFieldLabel3 = new JLabel("Sensor 3");
 	private JTextField comportTextField1 = new JTextField("Comport TextField1");
 	private JTextField comportTextField2 = new JTextField("Comport TextField2");;
 	private JTextField comportTextField3 = new JTextField("Comport TextField3");;
