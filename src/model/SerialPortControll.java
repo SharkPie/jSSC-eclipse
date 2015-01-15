@@ -1,23 +1,25 @@
 package model;
 
-import view.*;
+import java.util.Observable;
+
+//import view.*;
 import jssc.*;
 
-public class SerialPortControll {
+public class SerialPortControll extends Observable{
 
-	private MainWindow _view;
+	//private MainWindow _view;
 	
 	static SerialPort serialPort;
 	String stringBuffer = new String();
 	
 	public SerialPortControll() {
-		this._view = new MainWindow();
+		//this._view = new MainWindow();
 		
 	}
 
 	public void getEventPort() {
 
-		serialPort = new SerialPort("COM9"); 
+		serialPort = new SerialPort("COM5"); 
 		try {
 			serialPort.openPort();//Open port
 			serialPort.setParams(38400, 8, 1, 0);//Set params
@@ -41,10 +43,11 @@ public class SerialPortControll {
 					try {
 						byte buffer[] = serialPort.readBytes(10);
 						stringBuffer = new String(buffer); // Write data to stringBuffer
-
-						stringBuffer = stringBuffer.replace("\n\r", "");
 						
-						System.out.println(stringBuffer);
+						setChanged();
+						stringBuffer = stringBuffer.replace("\n\r", "");
+						notifyObservers(stringBuffer);
+//						System.out.println(stringBuffer);
 //						_view.setjLMesswert(stringBuffer);
 //						_view.setjTMesswert(stringBuffer);
 //						_view.validate();

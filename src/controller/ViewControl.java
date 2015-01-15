@@ -70,8 +70,9 @@ public class ViewControl implements Observer{
 
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-        drawBoard.setComportTextField1(arg1.toString());
+        //drawBoard.setComportTextField1(arg1.toString());
 		//System.out.println("test :" + arg1);
+		_view.setjTMesswert(arg1.toString());;
 	}
     
     

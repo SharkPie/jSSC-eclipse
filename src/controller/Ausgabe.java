@@ -3,7 +3,6 @@ package controller;
 import java.util.Observable;
 
 import view.DrawBoard;
-import javafx.beans.InvalidationListener;
 import model.ComPort;
 
 public class Ausgabe extends Observable{
