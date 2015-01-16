@@ -77,7 +77,8 @@ public class ViewControl implements Observer{
 		// TODO Auto-generated method stub
         //drawBoard.setComportTextField1(arg1.toString());
 		//System.out.println("test :" + arg1);
-		_view.setjTMesswert(arg1.toString());;
+		//_view.setjTMesswert(arg1.toString());;
+		labelTest.setSensorTextFieldInhalt(arg1.toString());
 	}
     
     

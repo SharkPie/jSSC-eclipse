@@ -298,8 +298,8 @@ public class LabelTest extends JFrame{
 		gridRechts.add(pumpeButton);
 	}
 	
-	public void setSensorTextField(String sensorTextField) {
-		//sensorTextField[0].setText(sensorTextField);
+	public void setSensorTextFieldInhalt(String sensorTextField) {
+		this.sensorTextField[0].setText(sensorTextField);
 		//sensorTextField[0]
 	}
 
