@@ -13,14 +13,15 @@ import model.*;
 public class ViewControl implements Observer{
     
     private MainWindow _view;
-    private SerialPortControll _model;
-    private ComPort _model02;
+//    private SerialPortControll _model;
+//    private ComPort _model02;
     private DrawBoard drawBoard;
+    private LabelTest labelTest;
     
     public ViewControl() {
         this._view = new MainWindow();
-        this._model = new SerialPortControll();
-        this._model02 = new ComPort();
+//        this._model = new SerialPortControll();
+//        this._model02 = new ComPort();
 
         addListener();
     }
@@ -66,6 +67,10 @@ public class ViewControl implements Observer{
     	this.drawBoard = new DrawBoard();
     	this.drawBoard.showView();
     	
+    }
+    
+    public void setLabelTestView(){
+    	labelTest = new LabelTest();
     }
 
 	public void update(Observable arg0, Object arg1) {
