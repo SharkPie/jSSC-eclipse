@@ -11,6 +11,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -31,6 +33,7 @@ import javax.swing.JTextField;
 public class LabelTest extends JFrame{
 	
 	int anzahlSensor; //Anzahl der zu ueberwachenden Sensoren
+	int zaehlerSensorBild;
 	
 	JPanel borderLayout; //Hauptfenster
 	JPanel gridSouth; //im JPanel "borderLayout" eingebettet, Sensordaten
@@ -60,8 +63,8 @@ public class LabelTest extends JFrame{
 	final ImageIcon tStueckLinks;
 	final ImageIcon tStueckRechts;
 	final ImageIcon ventilHorizontal;
-	final ImageIcon sensorHorizontal;
-	final ImageIcon sensorVertikal;
+	final ImageIcon[] sensorHorizontal;
+	final ImageIcon[] sensorVertikal;
 	final ImageIcon pumpe;
 	
 	JRadioButton kreuzButton; //Die einzelnen Bilder sind als Radiobuttons realisiert, einer fuer jedes Bild
@@ -87,6 +90,7 @@ public class LabelTest extends JFrame{
 	public LabelTest(int anzahlSensor){
 		// TODO Auto-generated constructor stub
 		this.anzahlSensor = anzahlSensor;
+		this.zaehlerSensorBild = 0;
 		
 		kreuz = new ImageIcon("pics/Kreuz.png");
 		leer = new ImageIcon("pics/Leer.png");
@@ -100,9 +104,24 @@ public class LabelTest extends JFrame{
 		tStueckUnten = new ImageIcon("pics/TStueckUnten.png");
 		tStueckLinks = new ImageIcon("pics/TStueckLinks.png");
 		tStueckRechts = new ImageIcon("pics/TStueckRechts.png");
-		ventilHorizontal = new ImageIcon("pics/VentilHorizontal.png");
-		sensorHorizontal = new ImageIcon("pics/SensorHorizontal.png");
-		sensorVertikal = new ImageIcon("pics/SensorVertikal.png");
+		ventilHorizontal = new ImageIcon("pics/ventilHorizontal.png");
+		sensorHorizontal = new ImageIcon[5];
+		sensorVertikal = new ImageIcon[5];
+		for(int i=0;i<5;i++){
+			StringBuilder sbHorizontal = new StringBuilder();
+			sbHorizontal.append("pics/SensorHorizontal");
+			sbHorizontal.append(i+1);
+			sbHorizontal.append(".png");
+			sensorHorizontal[i] = new ImageIcon(sbHorizontal.toString());
+			
+			StringBuilder sbVertikal = new StringBuilder();
+			sbVertikal.append("pics/SensorVertikal");
+			sbVertikal.append(i+1);
+			sbVertikal.append(".png");
+			sensorVertikal[i] = new ImageIcon(sbVertikal.toString());
+			
+		}
+		
 		pumpe = new ImageIcon("pics/Pumpe.png");
 
 		initLayout(); //initialisieren der einzelen Teile, die das Hauptfenster darstellen
@@ -117,7 +136,7 @@ public class LabelTest extends JFrame{
 		
 		initSensorErh�henButton();
 		
-		initZeichenfläche();
+		initZeichenflaeche();
 		
 		initWindow();
 	}
@@ -125,6 +144,37 @@ public class LabelTest extends JFrame{
 	private void initSensorErh�henButton() { //Buttons zur Sensor Manipulation erstellen
 		sensorPlus = new JButton("Sensor +");
 		sensorMinus = new JButton("Sensor -");
+		
+		sensorPlus.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				//System.out.println(zaehlerSensorBild);
+				if(zaehlerSensorBild==4)
+					zaehlerSensorBild = -1;
+				
+				zaehlerSensorBild++;
+				sensorHorizontalButton.setIcon(sensorHorizontal[zaehlerSensorBild]);
+				sensorVertikalButton.setIcon(sensorVertikal[zaehlerSensorBild]);
+			}
+			
+		});
+		
+		sensorMinus.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(zaehlerSensorBild==0)
+					zaehlerSensorBild=5;
+				
+				zaehlerSensorBild--;
+				sensorHorizontalButton.setIcon(sensorHorizontal[zaehlerSensorBild]);
+				sensorVertikalButton.setIcon(sensorVertikal[zaehlerSensorBild]);
+				
+			}
+			
+		});
+		
 		gridLinks.add(sensorPlus);
 		gridLinks.add(sensorMinus);
 	}
@@ -168,7 +218,7 @@ public class LabelTest extends JFrame{
 		gridLinks.add(gewaehltesBild);
 	}
 
-	private void initZeichenfläche() { //erstellen der Zeichenfläche, 2D Feld aus einzelnen JLabels, Hinzufuegen des Mouseevents
+	private void initZeichenflaeche() { //erstellen der Zeichenfläche, 2D Feld aus einzelnen JLabels, Hinzufuegen des Mouseevents
 		labelGitter = new JLabel[10][10];
 		for(int i=0;i<10;i++){
 			for(int j=0;j<10;j++){
@@ -213,9 +263,9 @@ public class LabelTest extends JFrame{
 						else if(tStueckUntenButton.isSelected())
 							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckUnten);
 						else if(sensorHorizontalButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(sensorHorizontal);
+							labelGitter[xKoordinate][yKoordinate].setIcon(sensorHorizontal[zaehlerSensorBild]);
 						else if(sensorVertikalButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(sensorVertikal);
+							labelGitter[xKoordinate][yKoordinate].setIcon(sensorVertikal[zaehlerSensorBild]);
 						else if(ventilHorizontalButton.isSelected())
 							labelGitter[xKoordinate][yKoordinate].setIcon(ventilHorizontal);
 						else
@@ -277,8 +327,8 @@ public class LabelTest extends JFrame{
 		tStueckRechtsButton = new JRadioButton(tStueckRechts);
 		tStueckUntenButton = new JRadioButton(tStueckUnten);
 		
-		sensorHorizontalButton = new JRadioButton(sensorHorizontal); //Sensoren
-		sensorVertikalButton = new JRadioButton(sensorVertikal);
+		sensorHorizontalButton = new JRadioButton(sensorHorizontal[0]); //Sensoren
+		sensorVertikalButton = new JRadioButton(sensorVertikal[0]);
 		
 		ventilHorizontalButton = new JRadioButton(ventilHorizontal); //Ventil
 		pumpeButton = new JRadioButton(pumpe); //Pumpe
