@@ -210,7 +210,7 @@ public class LabelTest extends JFrame{
 		this.setJMenuBar(menuBar);
 	}
 
-	private void initAusgewähltBild() { //das derzeitig ausgewählte Piktogramm wird dargestellt
+	private void initAusgewähltBild() { //das derzeitig ausgew�hlte Piktogramm wird dargestellt
 		gewaehltesBildText = new JLabel("Ausgewaehltes Teil:");
 		gewaehltesBild = new JLabel(kreuz);
 		
@@ -218,7 +218,7 @@ public class LabelTest extends JFrame{
 		gridLinks.add(gewaehltesBild);
 	}
 
-	private void initZeichenflaeche() { //erstellen der Zeichenfläche, 2D Feld aus einzelnen JLabels, Hinzufuegen des Mouseevents
+	private void initZeichenflaeche() { //erstellen der Zeichenfl�che, 2D Feld aus einzelnen JLabels, Hinzufuegen des Mouseevents
 		labelGitter = new JLabel[10][10];
 		for(int i=0;i<10;i++){
 			for(int j=0;j<10;j++){
