@@ -70,7 +70,7 @@ public class ViewControl implements Observer{
     }
     
     public void setLabelTestView(){
-    	labelTest = new LabelTest(4);
+    	labelTest = new LabelTest(3);
     }
 
 	public void update(Observable arg0, Object arg1) {

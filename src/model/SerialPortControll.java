@@ -19,7 +19,7 @@ public class SerialPortControll extends Observable{
 
 	public void getEventPort() {
 
-		serialPort = new SerialPort("COM5"); 
+		serialPort = new SerialPort("COM3"); 
 		try {
 			serialPort.openPort();//Open port
 			serialPort.setParams(38400, 8, 1, 0);//Set params
@@ -38,16 +38,17 @@ public class SerialPortControll extends Observable{
 
 		public void serialEvent(SerialPortEvent event) {
 			if(event.isRXCHAR()){//If data is available
-				if(event.getEventValue() == 10){//Check bytes count in the input buffer
+				if(event.getEventValue() == 24){//Check bytes count in the input buffer
 					//Read data, if 10 bytes available 
 					try {
-						byte buffer[] = serialPort.readBytes(10);
+						byte buffer[] = serialPort.readBytes(24);
 						stringBuffer = new String(buffer); // Write data to stringBuffer
-						
+
 						setChanged();
 						stringBuffer = stringBuffer.replace("\n\r", "");
 						notifyObservers(stringBuffer);
 //						System.out.println(stringBuffer);
+
 //						_view.setjLMesswert(stringBuffer);
 //						_view.setjTMesswert(stringBuffer);
 //						_view.validate();
