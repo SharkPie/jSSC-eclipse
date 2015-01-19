@@ -13,7 +13,6 @@ public class MainWindow extends JFrame{
 	private JButton jBExit = new JButton("Beenden");
 	private JButton jBRefresh = new JButton("refresh");
 	private JTextField jTMesswert = new JTextField("ausgabe234452");
-	//...
 	
 	public MainWindow() {
 		super("ZigBee");

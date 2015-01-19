@@ -13,15 +13,11 @@ import model.*;
 public class ViewControl implements Observer{
     
     private MainWindow _view;
-//    private SerialPortControll _model;
-//    private ComPort _model02;
     private DrawBoard drawBoard;
     private LabelTest labelTest;
     
     public ViewControl() {
         this._view = new MainWindow();
-//        this._model = new SerialPortControll();
-//        this._model02 = new ComPort();
 
         addListener();
     }
@@ -36,7 +32,6 @@ public class ViewControl implements Observer{
     private void addListener() {
     	this._view.setExitButtonListener(new ExitButtonListener());
     	this._view.setRefreshButtonListener(new RefreshButtonListener());
-    	//this._view.setComEventListener(new ComEventlistener());
     }
     
     
@@ -52,13 +47,6 @@ public class ViewControl implements Observer{
     class RefreshButtonListener implements ActionListener {
 
     	public void actionPerformed(ActionEvent e) {
-    		//this._view.setjTMesswert(this._model02.getComData());
-//    		DrawBoard newDrawBoard = new DrawBoard();
-//    		Ausgabe ausgabe = new Ausgabe();
-//    		ausgabe.addObserver(newDrawBoard);
-//    		newDrawBoard.showView();
-//    		ausgabe.run();
-    		//setDrawBoardView();
     	}
     	
     }
@@ -74,12 +62,7 @@ public class ViewControl implements Observer{
     }
 
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-        //drawBoard.setComportTextField1(arg1.toString());
-//		System.out.println("test :" + arg1);
-		//_view.setjTMesswert(arg1.toString());;
 		labelTest.setSensorTextFieldInhalt(arg1.toString());
 	}
-    
     
 }

@@ -237,8 +237,8 @@ public class LabelTest extends JFrame{
 	}
 
 	private void initRadioButtons() {
-		kreuzButton = new JRadioButton(kreuz);
-		kreuzButton.setSelected(true);
+		
+		kreuzButton =new JRadioButton(kreuz);
 		leerButton = new JRadioButton(leer);
 		
 		horizontalButton = new JRadioButton(horizontal);
