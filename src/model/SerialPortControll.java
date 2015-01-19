@@ -2,6 +2,7 @@ package model;
 
 import java.util.Observable;
 
+
 //import view.*;
 import jssc.*;
 
@@ -15,6 +16,14 @@ public class SerialPortControll extends Observable{
 	public SerialPortControll() {
 		//this._view = new MainWindow();
 		
+	}
+	
+	public String[] getComPorts() { //listet alle verfügbaren ComPorts auf
+		String[] portNames = SerialPortList.getPortNames();
+		for (int i = 0; i < portNames.length; i++) {
+			System.out.println(portNames[i]);
+		}
+		return portNames;
 	}
 
 	public void getEventPort() {

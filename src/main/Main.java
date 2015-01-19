@@ -16,6 +16,7 @@ public class Main {
 			serialPort.addObserver(viewControl);
 			serialPort.getEventPort();
 			viewControl.setLabelTestView();
+			viewControl.setDrawBoardView();
 
 			
 

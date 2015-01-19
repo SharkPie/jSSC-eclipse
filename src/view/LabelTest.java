@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -25,14 +26,17 @@ public class LabelTest extends JFrame{
 	JPanel borderLayout;
 	JPanel gridSouth;
 	JPanel gridHaupt;
-	JPanel gridLinks;
 	JPanel gridRechts;
+	JPanel gridLinks;
 	
 	JLabel[] sensorLabel;
 	JTextField[] sensorTextField;
 	
 	JLabel gewähltesBildText;
 	JLabel gewähltesBild;
+	
+	JButton sensorPlus;
+	JButton sensorMinus;
 	
 	final ImageIcon kreuz;
 	final ImageIcon leer;
@@ -102,9 +106,18 @@ public class LabelTest extends JFrame{
 		
 		initAusgewähltBild();
 		
+		initSensorErhöhenButton();
+		
 		initZeichenfläche();
 		
 		initWindow();
+	}
+
+	private void initSensorErhöhenButton() {
+		sensorPlus = new JButton("Sensor +");
+		sensorMinus = new JButton("Sensor -");
+		gridLinks.add(sensorPlus);
+		gridLinks.add(sensorMinus);
 	}
 
 	private void initSensorLabels() {
@@ -142,8 +155,8 @@ public class LabelTest extends JFrame{
 		gewähltesBildText = new JLabel("Ausgewähltes Teil:");
 		gewähltesBild = new JLabel(kreuz);
 		
-		gridRechts.add(gewähltesBildText);
-		gridRechts.add(gewähltesBild);
+		gridLinks.add(gewähltesBildText);
+		gridLinks.add(gewähltesBild);
 	}
 
 	private void initZeichenfläche() {
@@ -151,7 +164,7 @@ public class LabelTest extends JFrame{
 		for(int i=0;i<10;i++){
 			for(int j=0;j<10;j++){
 				labelGitter[i][j] = new JLabel(leer);
-				gridLinks.add(labelGitter[i][j]);
+				gridRechts.add(labelGitter[i][j]);
 				
 				class IconMouseListener extends MouseAdapter{
 					
@@ -227,18 +240,19 @@ public class LabelTest extends JFrame{
 		gridHaupt.setLayout(new GridLayout(1,2));
 		borderLayout.add(gridHaupt,BorderLayout.CENTER);
 		
-		gridRechts = new JPanel();
-		gridRechts.setLayout(new GridLayout(5,4));
-		gridHaupt.add(gridRechts);
-		
 		gridLinks = new JPanel();
-		gridLinks.setLayout(new GridLayout(10,10));
+		gridLinks.setLayout(new GridLayout(5,4));
 		gridHaupt.add(gridLinks);
+		
+		gridRechts = new JPanel();
+		gridRechts.setLayout(new GridLayout(10,10));
+		gridHaupt.add(gridRechts);
 	}
 
 	private void initRadioButtons() {
 		
 		kreuzButton =new JRadioButton(kreuz);
+		kreuzButton.setSelected(true);
 		leerButton = new JRadioButton(leer);
 		
 		horizontalButton = new JRadioButton(horizontal);
@@ -284,22 +298,22 @@ public class LabelTest extends JFrame{
 		buttonGroup.add(ventilHorizontalButton);
 		buttonGroup.add(pumpeButton);
 		
-		gridRechts.add(kreuzButton);
-		gridRechts.add(leerButton);
-		gridRechts.add(horizontalButton);
-		gridRechts.add(vertikalButton);
-		gridRechts.add(lStückObenLinksButton);
-		gridRechts.add(lStückObenRechtsButton);
-		gridRechts.add(lStückUntenLinksButton);
-		gridRechts.add(lStückUntenRechtsButton);
-		gridRechts.add(tStückLinksButton);
-		gridRechts.add(tStückObenButton);
-		gridRechts.add(tStückRechtsButton);
-		gridRechts.add(tStückUntenButton);
-		gridRechts.add(sensorHorizontalButton);
-		gridRechts.add(sensorVertikalButton);
-		gridRechts.add(ventilHorizontalButton);
-		gridRechts.add(pumpeButton);
+		gridLinks.add(kreuzButton);
+		gridLinks.add(leerButton);
+		gridLinks.add(horizontalButton);
+		gridLinks.add(vertikalButton);
+		gridLinks.add(lStückObenLinksButton);
+		gridLinks.add(lStückObenRechtsButton);
+		gridLinks.add(lStückUntenLinksButton);
+		gridLinks.add(lStückUntenRechtsButton);
+		gridLinks.add(tStückLinksButton);
+		gridLinks.add(tStückObenButton);
+		gridLinks.add(tStückRechtsButton);
+		gridLinks.add(tStückUntenButton);
+		gridLinks.add(sensorHorizontalButton);
+		gridLinks.add(sensorVertikalButton);
+		gridLinks.add(ventilHorizontalButton);
+		gridLinks.add(pumpeButton);
 	}
 	
 	public void setSensorTextFieldInhalt(String sensorTextField) {

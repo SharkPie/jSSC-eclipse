@@ -12,26 +12,26 @@ import model.*;
 
 public class ViewControl implements Observer{
     
-    private MainWindow _view;
+    private MainWindow view;
     private DrawBoard drawBoard;
     private LabelTest labelTest;
     
     public ViewControl() {
-        this._view = new MainWindow();
+        this.view = new MainWindow();
 
         addListener();
     }
     
     
     public void showView() {
-        this._view.setVisible(true);
-        this._view.validate();
+        this.view.setVisible(true);
+        this.view.validate();
         
     }
     
     private void addListener() {
-    	this._view.setExitButtonListener(new ExitButtonListener());
-    	this._view.setRefreshButtonListener(new RefreshButtonListener());
+    	this.view.setExitButtonListener(new ExitButtonListener());
+    	this.view.setRefreshButtonListener(new RefreshButtonListener());
     }
     
     
