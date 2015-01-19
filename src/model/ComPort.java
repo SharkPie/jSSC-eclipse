@@ -1,12 +1,23 @@
+/*
+* Datei: ComPort.java
+*
+* Die Klasse ist für die Kommunikation mit den ComPorts Zuständig
+* TEST KLASSE. KANN NOCH GELÖSCHT WERDEN.
+*
+*
+*/
+
 package model;
-//dominik ist ein noob :D 
+
 import jssc.*;
 
 public class ComPort {
 
 	String stringBuffer = new String();
 
-	public String[] getComPorts() { //listet alle verf�gbaren ComPorts auf
+	//listet alle verfügbaren ComPorts auf und gibt ein String-Array mit allen ComPorts zurück.
+	//Die ComPorts müssen nicht zwingend von dem Programm auslesbar/darstellbar sein.
+	public String[] getComPorts() { 
 		String[] portNames = SerialPortList.getPortNames();
 		for (int i = 0; i < portNames.length; i++) {
 			System.out.println(portNames[i]);
@@ -14,7 +25,8 @@ public class ComPort {
 		return portNames;
 	}
 
-	public String getComData() { // gibt ComPort Daten einmal aus
+	// gibt ComPort Daten einmal aus, ist zu Testzwecken eingebaut, Com Port Daten sind vorgegeben
+	public String getComData() { 
 		//SerialPort = new SerialPort(getComPorts());
 		SerialPort serialPort = new SerialPort("COM5");
 		try {

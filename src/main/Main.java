@@ -1,3 +1,12 @@
+/*
+* Datei: Main.java
+*
+* Die Klasse wird nur zum starten der eigentlichen Anwendung genutzt
+*
+*
+*
+*/
+
 package main;
 
 import model.SerialPortControll;

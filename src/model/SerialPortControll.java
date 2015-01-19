@@ -1,3 +1,12 @@
+/*
+* Datei: ComPort.java
+*
+* Die Klasse ist für die Kommunikation mit den ComPorts Zuständig
+*
+*
+*
+*/
+
 package model;
 
 import java.util.Observable;
@@ -18,7 +27,9 @@ public class SerialPortControll extends Observable{
 		
 	}
 	
-	public String[] getComPorts() { //listet alle verf�gbaren ComPorts auf
+	//listet alle verfügbaren ComPorts auf und gibt ein String-Array mit allen ComPorts zurück.
+	//Die ComPorts müssen nicht zwingend von dem Programm auslesbar/darstellbar sein.
+	public String[] getComPorts() {
 		String[] portNames = SerialPortList.getPortNames();
 		for (int i = 0; i < portNames.length; i++) {
 			System.out.println(portNames[i]);
@@ -31,9 +42,9 @@ public class SerialPortControll extends Observable{
 		serialPort = new SerialPort("COM3"); 
 		try {
 			serialPort.openPort();//Open port
-			serialPort.setParams(38400, 8, 1, 0);//Set params
+			serialPort.setParams(38400, 8, 1, 0); //ComPort Paramter festlegen, Baud, Datenbits, Stopbits, Parität
 			serialPort.setFlowControlMode(0);
-			int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;//Prepare mask
+			int mask = SerialPort.MASK_RXCHAR + SerialPort.MASK_CTS + SerialPort.MASK_DSR;
 			serialPort.setEventsMask(mask);//Set mask
 			serialPort.addEventListener(new SerialPortReader());//Add SerialPortEventListener
 		}
@@ -46,7 +57,7 @@ public class SerialPortControll extends Observable{
 	class SerialPortReader implements SerialPortEventListener {
 
 		public void serialEvent(SerialPortEvent event) {
-			if(event.isRXCHAR()){//If data is available
+			if(event.isRXCHAR()){ //prüft ob Daten am ComPort anliegen
 				if(event.getEventValue() == 24){//Check bytes count in the input buffer
 					//Read data, if 10 bytes available 
 					try {
