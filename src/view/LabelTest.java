@@ -1,7 +1,7 @@
 /*
 * Datei: LabelTest.java
 *
-* Die Klasse stellt das Hauptfenster zur Verfügung, in welchem die Rohrleitungen visualisiert werden
+* Die Klasse stellt das Hauptfenster zur Verfuegung, in welchem die Rohrleitungen visualisiert werden
 *
 *
 *
@@ -30,19 +30,19 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class LabelTest extends JFrame{
 	
-	int anzahlSensor; //Anzahl der zu überwachenden Sensoren
+	int anzahlSensor; //Anzahl der zu ueberwachenden Sensoren
 	
 	JPanel borderLayout; //Hauptfenster
 	JPanel gridSouth; //im JPanel "borderLayout" eingebettet, Sensordaten
 	JPanel gridHaupt; //im JPanel "borderLayout" eingebettet, nimmt "gridRechts" und "gridLinks" auf
 	JPanel gridRechts; //im JPanel "gridHaupt" eingebettet, Darstellung des Rohrsystems
-	JPanel gridLinks; //im JPanel "gridHaupt" eingebettet, Darstellung der Rohrstücke
+	JPanel gridLinks; //im JPanel "gridHaupt" eingebettet, Darstellung der Rohrstuecke
 	
 	JLabel[] sensorLabel;
 	JTextField[] sensorTextField;
 	
-	JLabel gewähltesBildText; //Darstellung der derzeitigen Auswahl
-	JLabel gewähltesBild; //Darstellung der derzeitigen Auswahl
+	JLabel gewaehltesBildText; //Darstellung der derzeitigen Auswahl
+	JLabel gewaehltesBild; //Darstellung der derzeitigen Auswahl
 	
 	JButton sensorPlus; // Button zur Auswahl ob Sensor 1, 2, etc. dargestellt werden soll
 	JButton sensorMinus;
@@ -51,38 +51,38 @@ public class LabelTest extends JFrame{
 	final ImageIcon leer;
 	final ImageIcon horizontal;
 	final ImageIcon vertical;
-	final ImageIcon lStückObenLinks;
-	final ImageIcon lStückObenRechts;
-	final ImageIcon lStückUntenLinks;
-	final ImageIcon lStückUntenRechts;
-	final ImageIcon tStückOben;
-	final ImageIcon tStückUnten;
-	final ImageIcon tStückLinks;
-	final ImageIcon tStückRechts;
+	final ImageIcon lStueckObenLinks;
+	final ImageIcon lStueckObenRechts;
+	final ImageIcon lStueckUntenLinks;
+	final ImageIcon lStueckUntenRechts;
+	final ImageIcon tStueckOben;
+	final ImageIcon tStueckUnten;
+	final ImageIcon tStueckLinks;
+	final ImageIcon tStueckRechts;
 	final ImageIcon ventilHorizontal;
 	final ImageIcon sensorHorizontal;
 	final ImageIcon sensorVertikal;
 	final ImageIcon pumpe;
 	
-	JRadioButton kreuzButton; //Die einzelnen Bilder sind als Radiobuttons realisiert, einer für jedes Bild
+	JRadioButton kreuzButton; //Die einzelnen Bilder sind als Radiobuttons realisiert, einer fuer jedes Bild
 	JRadioButton leerButton;
 	JRadioButton horizontalButton;
 	JRadioButton vertikalButton;
-	JRadioButton lStückObenLinksButton;
-	JRadioButton lStückObenRechtsButton;
-	JRadioButton lStückUntenLinksButton;
-	JRadioButton lStückUntenRechtsButton;
-	JRadioButton tStückObenButton;
-	JRadioButton tStückUntenButton;
-	JRadioButton tStückLinksButton;
-	JRadioButton tStückRechtsButton;
+	JRadioButton lStueckObenLinksButton;
+	JRadioButton lStueckObenRechtsButton;
+	JRadioButton lStueckUntenLinksButton;
+	JRadioButton lStueckUntenRechtsButton;
+	JRadioButton tStueckObenButton;
+	JRadioButton tStueckUntenButton;
+	JRadioButton tStueckLinksButton;
+	JRadioButton tStueckRechtsButton;
 	JRadioButton sensorVertikalButton;
 	JRadioButton sensorHorizontalButton;
 	JRadioButton ventilHorizontalButton;
 	JRadioButton pumpeButton;
 	ButtonGroup buttonGroup;
 	
-	JLabel[][] labelGitter; //2-D Array zum anordnen der Rohrstücke
+	JLabel[][] labelGitter; //2-D Array zum anordnen der Rohrstuecke
 	
 	public LabelTest(int anzahlSensor){
 		// TODO Auto-generated constructor stub
@@ -92,14 +92,14 @@ public class LabelTest extends JFrame{
 		leer = new ImageIcon("pics/Leer.png");
 		horizontal = new ImageIcon("pics/Horizontal.png");
 		vertical = new ImageIcon("pics/Vertikal.png");
-		lStückObenLinks = new ImageIcon("pics/LStückObenLinks.png");
-		lStückObenRechts = new ImageIcon("pics/LStückObenRechts.png");
-		lStückUntenLinks = new ImageIcon("pics/LStückUntenLinks.png");
-		lStückUntenRechts = new ImageIcon("pics/LStückUntenRechts.png");
-		tStückOben = new ImageIcon("pics/TStückOben.png");
-		tStückUnten = new ImageIcon("pics/TStückUnten.png");
-		tStückLinks = new ImageIcon("pics/TStückLinks.png");
-		tStückRechts = new ImageIcon("pics/TStückRechts.png");
+		lStueckObenLinks = new ImageIcon("pics/LStueckObenLinks.png");
+		lStueckObenRechts = new ImageIcon("pics/LStueckObenRechts.png");
+		lStueckUntenLinks = new ImageIcon("pics/LStueckUntenLinks.png");
+		lStueckUntenRechts = new ImageIcon("pics/LStueckUntenRechts.png");
+		tStueckOben = new ImageIcon("pics/TStueckOben.png");
+		tStueckUnten = new ImageIcon("pics/TStueckUnten.png");
+		tStueckLinks = new ImageIcon("pics/TStueckLinks.png");
+		tStueckRechts = new ImageIcon("pics/TStueckRechts.png");
 		ventilHorizontal = new ImageIcon("pics/VentilHorizontal.png");
 		sensorHorizontal = new ImageIcon("pics/SensorHorizontal.png");
 		sensorVertikal = new ImageIcon("pics/SensorVertikal.png");
@@ -115,14 +115,14 @@ public class LabelTest extends JFrame{
 		
 		initAusgewähltBild();
 		
-		initSensorErhöhenButton();
+		initSensorErh�henButton();
 		
 		initZeichenfläche();
 		
 		initWindow();
 	}
 
-	private void initSensorErhöhenButton() { //Buttons zur Sensor Manipulation erstellen
+	private void initSensorErh�henButton() { //Buttons zur Sensor Manipulation erstellen
 		sensorPlus = new JButton("Sensor +");
 		sensorMinus = new JButton("Sensor -");
 		gridLinks.add(sensorPlus);
@@ -161,14 +161,14 @@ public class LabelTest extends JFrame{
 	}
 
 	private void initAusgewähltBild() { //das derzeitig ausgewählte Piktogramm wird dargestellt
-		gewähltesBildText = new JLabel("Ausgewähltes Teil:");
-		gewähltesBild = new JLabel(kreuz);
+		gewaehltesBildText = new JLabel("Ausgewaehltes Teil:");
+		gewaehltesBild = new JLabel(kreuz);
 		
-		gridLinks.add(gewähltesBildText);
-		gridLinks.add(gewähltesBild);
+		gridLinks.add(gewaehltesBildText);
+		gridLinks.add(gewaehltesBild);
 	}
 
-	private void initZeichenfläche() { //erstellen der Zeichenfläche, 2D Feld aus einzelnen JLabels, Hinzufügen des Mouseevents
+	private void initZeichenfläche() { //erstellen der Zeichenfläche, 2D Feld aus einzelnen JLabels, Hinzufuegen des Mouseevents
 		labelGitter = new JLabel[10][10];
 		for(int i=0;i<10;i++){
 			for(int j=0;j<10;j++){
@@ -196,22 +196,22 @@ public class LabelTest extends JFrame{
 							labelGitter[xKoordinate][yKoordinate].setIcon(vertical);
 						else if(horizontalButton.isSelected())
 							labelGitter[xKoordinate][yKoordinate].setIcon(horizontal);
-						else if(lStückObenLinksButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStückObenLinks);
-						else if(lStückObenRechtsButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStückObenRechts);
-						else if(lStückUntenLinksButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStückUntenLinks);
-						else if(lStückUntenRechtsButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStückUntenRechts);
-						else if(tStückLinksButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStückLinks);
-						else if(tStückObenButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStückOben);
-						else if(tStückRechtsButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStückRechts);
-						else if(tStückUntenButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStückUnten);
+						else if(lStueckObenLinksButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckObenLinks);
+						else if(lStueckObenRechtsButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckObenRechts);
+						else if(lStueckUntenLinksButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckUntenLinks);
+						else if(lStueckUntenRechtsButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckUntenRechts);
+						else if(tStueckLinksButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckLinks);
+						else if(tStueckObenButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckOben);
+						else if(tStueckRechtsButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckRechts);
+						else if(tStueckUntenButton.isSelected())
+							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckUnten);
 						else if(sensorHorizontalButton.isSelected())
 							labelGitter[xKoordinate][yKoordinate].setIcon(sensorHorizontal);
 						else if(sensorVertikalButton.isSelected())
@@ -235,7 +235,7 @@ public class LabelTest extends JFrame{
 		setVisible(true);
 	}
 
-	private void initLayout() { //Zusammenfügen der einzelnen Teile für das Hauptfenster
+	private void initLayout() { //Zusammenfuegen der einzelnen Teile fuer das Hauptfenster
 		
 		borderLayout = new JPanel();
 		borderLayout.setLayout(new BorderLayout());
@@ -249,7 +249,7 @@ public class LabelTest extends JFrame{
 		gridHaupt.setLayout(new GridLayout(1,2));
 		borderLayout.add(gridHaupt,BorderLayout.CENTER);
 		
-		gridLinks = new JPanel(); //Rohrstücke
+		gridLinks = new JPanel(); //Rohrstuecke
 		gridLinks.setLayout(new GridLayout(5,4));
 		gridHaupt.add(gridLinks);
 		
@@ -260,22 +260,22 @@ public class LabelTest extends JFrame{
 
 	private void initRadioButtons() {
 		
-		kreuzButton =new JRadioButton(kreuz); //Kreuzrohrstück
+		kreuzButton =new JRadioButton(kreuz); //Kreuzrohrstueck
 		kreuzButton.setSelected(true);
 		leerButton = new JRadioButton(leer);
 		
 		horizontalButton = new JRadioButton(horizontal);
 		vertikalButton = new JRadioButton(vertical);
 		
-		lStückObenLinksButton = new JRadioButton(lStückObenLinks); //L-Rohrstücke
-		lStückObenRechtsButton = new JRadioButton(lStückObenRechts);
-		lStückUntenLinksButton = new JRadioButton(lStückUntenLinks);
-		lStückUntenRechtsButton = new JRadioButton(lStückUntenRechts);
+		lStueckObenLinksButton = new JRadioButton(lStueckObenLinks); //L-Rohrstuecke
+		lStueckObenRechtsButton = new JRadioButton(lStueckObenRechts);
+		lStueckUntenLinksButton = new JRadioButton(lStueckUntenLinks);
+		lStueckUntenRechtsButton = new JRadioButton(lStueckUntenRechts);
 		
-		tStückLinksButton = new JRadioButton(tStückLinks); //T-Rohrstücke
-		tStückObenButton = new JRadioButton(tStückOben);
-		tStückRechtsButton = new JRadioButton(tStückRechts);
-		tStückUntenButton = new JRadioButton(tStückUnten);
+		tStueckLinksButton = new JRadioButton(tStueckLinks); //T-Rohrstuecke
+		tStueckObenButton = new JRadioButton(tStueckOben);
+		tStueckRechtsButton = new JRadioButton(tStueckRechts);
+		tStueckUntenButton = new JRadioButton(tStueckUnten);
 		
 		sensorHorizontalButton = new JRadioButton(sensorHorizontal); //Sensoren
 		sensorVertikalButton = new JRadioButton(sensorVertikal);
@@ -291,15 +291,15 @@ public class LabelTest extends JFrame{
 		buttonGroup.add(horizontalButton);
 		buttonGroup.add(vertikalButton);
 		
-		buttonGroup.add(lStückObenLinksButton);
-		buttonGroup.add(lStückObenRechtsButton);
-		buttonGroup.add(lStückUntenLinksButton);
-		buttonGroup.add(lStückUntenRechtsButton);
+		buttonGroup.add(lStueckObenLinksButton);
+		buttonGroup.add(lStueckObenRechtsButton);
+		buttonGroup.add(lStueckUntenLinksButton);
+		buttonGroup.add(lStueckUntenRechtsButton);
 		
-		buttonGroup.add(tStückLinksButton);
-		buttonGroup.add(tStückObenButton);
-		buttonGroup.add(tStückRechtsButton);
-		buttonGroup.add(tStückUntenButton);
+		buttonGroup.add(tStueckLinksButton);
+		buttonGroup.add(tStueckObenButton);
+		buttonGroup.add(tStueckRechtsButton);
+		buttonGroup.add(tStueckUntenButton);
 		
 		buttonGroup.add(sensorHorizontalButton);
 		buttonGroup.add(sensorVertikalButton);
@@ -311,14 +311,14 @@ public class LabelTest extends JFrame{
 		gridLinks.add(leerButton);
 		gridLinks.add(horizontalButton);
 		gridLinks.add(vertikalButton);
-		gridLinks.add(lStückObenLinksButton);
-		gridLinks.add(lStückObenRechtsButton);
-		gridLinks.add(lStückUntenLinksButton);
-		gridLinks.add(lStückUntenRechtsButton);
-		gridLinks.add(tStückLinksButton);
-		gridLinks.add(tStückObenButton);
-		gridLinks.add(tStückRechtsButton);
-		gridLinks.add(tStückUntenButton);
+		gridLinks.add(lStueckObenLinksButton);
+		gridLinks.add(lStueckObenRechtsButton);
+		gridLinks.add(lStueckUntenLinksButton);
+		gridLinks.add(lStueckUntenRechtsButton);
+		gridLinks.add(tStueckLinksButton);
+		gridLinks.add(tStueckObenButton);
+		gridLinks.add(tStueckRechtsButton);
+		gridLinks.add(tStueckUntenButton);
 		gridLinks.add(sensorHorizontalButton);
 		gridLinks.add(sensorVertikalButton);
 		gridLinks.add(ventilHorizontalButton);
