@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class LabelTest extends JFrame{
 	
+	int anzahlSensor;
+	
 	JPanel borderLayout;
 	JPanel gridSouth;
 	JPanel gridHaupt;
@@ -69,8 +71,10 @@ public class LabelTest extends JFrame{
 	
 	JLabel[][] labelGitter;
 	
-	public LabelTest(){
+	public LabelTest(int anzahlSensor){
 		// TODO Auto-generated constructor stub
+		this.anzahlSensor = anzahlSensor;
+		
 		kreuz = new ImageIcon("pics/Kreuz.png");
 		leer = new ImageIcon("pics/Leer.png");
 		horizontal = new ImageIcon("pics/Horizontal.png");
@@ -104,17 +108,17 @@ public class LabelTest extends JFrame{
 	}
 
 	private void initSensorLabels() {
-		sensorLabel = new JLabel[3];
-		sensorTextField = new JTextField[3];
+		sensorLabel = new JLabel[anzahlSensor];
+		sensorTextField = new JTextField[anzahlSensor];
 		
-		for(int i=0;i<3;i++){
+		for(int i=0;i<anzahlSensor;i++){
 			StringBuilder sb = new StringBuilder();
 			sb.append("Sensor ");
 			sb.append(i+1);
 			sensorLabel[i] = new JLabel(sb.toString());
 			gridSouth.add(sensorLabel[i]);
 			}
-		for(int i=0;i<3;i++){
+		for(int i=0;i<anzahlSensor;i++){
 			sensorTextField[i] = new JTextField("000,000,000");
 			sensorTextField[i].setEditable(false);
 			gridSouth.add(sensorTextField[i]);
