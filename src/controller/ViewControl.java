@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.EventListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.regex.Pattern;
 
 import view.*;
 import model.*;
@@ -70,7 +71,8 @@ public class ViewControl implements Observer{
     }
 
 	public void update(Observable arg0, Object arg1) {
-		labelTest.setSensorTextFieldInhalt(arg1.toString());
+		String[] sensorWerte = arg1.toString().split(Pattern.quote(":"));
+		labelTest.setSensorTextFieldInhalt(sensorWerte[1],new Integer(sensorWerte[0]));
 	}
     
 }
