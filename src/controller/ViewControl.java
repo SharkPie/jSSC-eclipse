@@ -73,6 +73,7 @@ public class ViewControl implements Observer{
 	public void update(Observable arg0, Object arg1) {
 		String[] sensorWerte = arg1.toString().split(Pattern.quote(":"));
 		labelTest.setSensorTextFieldInhalt(sensorWerte[1],new Integer(sensorWerte[0]));
+		labelTest.setLabelGitterTooltip(sensorWerte[1], labelTest.getSensorFields(new Integer(sensorWerte[0])));
 	}
     
 }
