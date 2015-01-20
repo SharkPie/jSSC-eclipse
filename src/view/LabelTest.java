@@ -216,8 +216,8 @@ public class LabelTest extends JFrame{
 
 	private void initZeichenflaeche() { //erstellen der Zeichenfläche, 2D Feld aus einzelnen JLabels, Hinzufuegen des Mouseevents
 		labelGitter = new JLabel[10][10];
-		for(int i=0;i<10;i++){
-			for(int j=0;j<10;j++){
+		for(int i=0;i<labelGitter.length;i++){
+			for(int j=0;j<labelGitter.length;j++){
 				labelGitter[i][j] = new JLabel(leer);
 				gridRechts.add(labelGitter[i][j]);
 				
@@ -280,10 +280,14 @@ public class LabelTest extends JFrame{
 		radioButton[11] = new JRadioButton(tStueckUnten);
 		
 		radioButton[12] = new JRadioButton(sensorHorizontal[0]); //Sensoren
+		radioButton[12].setToolTipText("Sensor");
 		radioButton[13] = new JRadioButton(sensorVertikal[0]);
+		radioButton[13].setToolTipText("Sensor");
 		
 		radioButton[14] = new JRadioButton(ventilHorizontal); //Ventil
+		radioButton[14].setToolTipText("Ventil");
 		radioButton[15] = new JRadioButton(pumpe); //Pumpe
+		radioButton[15].setToolTipText("Pumpe");
 		
 		for(int i=0;i<radioButton.length;i++){	//radioButtons in eine Gruppe zusammenführen
 			buttonGroup.add(radioButton[i]);
@@ -296,7 +300,27 @@ public class LabelTest extends JFrame{
 	
 	public void setSensorTextFieldInhalt(String sensorTextField, int nummerTextField) {
 		this.sensorTextField[nummerTextField].setText(sensorTextField);
-		//sensorTextField[0]
+	}
+	
+	public int[] getSensorFields(int sensorNummer){
+		int[] postion = new int[2];
+		for(int i=0;i<labelGitter.length;i++){
+			for(int j=0;j<labelGitter.length;j++){
+				if(labelGitter[i][j].getIcon().equals(sensorHorizontal[sensorNummer-1])
+						||labelGitter[i][j].getIcon().equals(sensorVertikal[sensorNummer-1])){
+					System.out.println(i+""+j);
+					postion[0] = i;
+					postion[1] = j;
+				}
+			}
+		}
+		
+		return postion;	
+	}
+	
+	public void setLabelGitterTooltip(String sensorWert, int[] position){
+		labelGitter[position[0]][position[1]].setToolTipText(sensorWert);
+		
 	}
 	
 	class RadioButtonActionListener implements ActionListener{
