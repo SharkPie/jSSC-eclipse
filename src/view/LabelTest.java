@@ -132,7 +132,7 @@ public class LabelTest extends JFrame{
 		
 		initRadioButtons();
 		
-		initAusgewÃ¤hltBild();
+		initAusgewaehltBild();
 		
 		initSensorErhöhenButton();
 		
@@ -150,7 +150,7 @@ public class LabelTest extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//System.out.println(zaehlerSensorBild);
-				if(zaehlerSensorBild==4)
+				if(zaehlerSensorBild==anzahlSensor-1)
 					zaehlerSensorBild = -1;
 				
 				zaehlerSensorBild++;
@@ -165,7 +165,7 @@ public class LabelTest extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(zaehlerSensorBild==0)
-					zaehlerSensorBild=5;
+					zaehlerSensorBild=anzahlSensor;
 				
 				zaehlerSensorBild--;
 				sensorHorizontalButton.setIcon(sensorHorizontal[zaehlerSensorBild]);
@@ -210,7 +210,7 @@ public class LabelTest extends JFrame{
 		this.setJMenuBar(menuBar);
 	}
 
-	private void initAusgewÃ¤hltBild() { //das derzeitig ausgewählte Piktogramm wird dargestellt
+	private void initAusgewaehltBild() { //das derzeitig ausgewählte Piktogramm wird dargestellt
 		gewaehltesBildText = new JLabel("Ausgewaehltes Teil:");
 		gewaehltesBild = new JLabel(kreuz);
 		
