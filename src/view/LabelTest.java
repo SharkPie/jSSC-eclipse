@@ -67,22 +67,7 @@ public class LabelTest extends JFrame{
 	final ImageIcon[] sensorVertikal;
 	final ImageIcon pumpe;
 	
-	JRadioButton kreuzButton; //Die einzelnen Bilder sind als Radiobuttons realisiert, einer fuer jedes Bild
-	JRadioButton leerButton;
-	JRadioButton horizontalButton;
-	JRadioButton vertikalButton;
-	JRadioButton lStueckObenLinksButton;
-	JRadioButton lStueckObenRechtsButton;
-	JRadioButton lStueckUntenLinksButton;
-	JRadioButton lStueckUntenRechtsButton;
-	JRadioButton tStueckObenButton;
-	JRadioButton tStueckUntenButton;
-	JRadioButton tStueckLinksButton;
-	JRadioButton tStueckRechtsButton;
-	JRadioButton sensorVertikalButton;
-	JRadioButton sensorHorizontalButton;
-	JRadioButton ventilHorizontalButton;
-	JRadioButton pumpeButton;
+	JRadioButton[] radioButton;
 	ButtonGroup buttonGroup;
 	
 	JLabel[][] labelGitter; //2-D Array zum anordnen der Rohrstuecke
@@ -92,7 +77,7 @@ public class LabelTest extends JFrame{
 		this.anzahlSensor = anzahlSensor;
 		this.zaehlerSensorBild = 0;
 		
-		kreuz = new ImageIcon("pics/Kreuz.png");
+		kreuz = new ImageIcon("pics/Kreuz.png");							//Laden aller Bilder
 		leer = new ImageIcon("pics/Leer.png");
 		horizontal = new ImageIcon("pics/Horizontal.png");
 		vertical = new ImageIcon("pics/Vertikal.png");
@@ -154,8 +139,14 @@ public class LabelTest extends JFrame{
 					zaehlerSensorBild = -1;
 				
 				zaehlerSensorBild++;
-				sensorHorizontalButton.setIcon(sensorHorizontal[zaehlerSensorBild]);
-				sensorVertikalButton.setIcon(sensorVertikal[zaehlerSensorBild]);
+				
+				radioButton[12].setIcon(sensorHorizontal[zaehlerSensorBild]); 	//button Sensor Horizontal
+				radioButton[13].setIcon(sensorVertikal[zaehlerSensorBild]);		//button Sensor Vertikal
+				
+				if(radioButton[12].isSelected())
+					gewaehltesBild.setIcon(radioButton[12].getIcon());
+				if(radioButton[13].isSelected())
+					gewaehltesBild.setIcon(radioButton[13].getIcon());
 			}
 			
 		});
@@ -168,8 +159,13 @@ public class LabelTest extends JFrame{
 					zaehlerSensorBild=anzahlSensor;
 				
 				zaehlerSensorBild--;
-				sensorHorizontalButton.setIcon(sensorHorizontal[zaehlerSensorBild]);
-				sensorVertikalButton.setIcon(sensorVertikal[zaehlerSensorBild]);
+				radioButton[12].setIcon(sensorHorizontal[zaehlerSensorBild]);	//button Sensor Horizontal
+				radioButton[13].setIcon(sensorVertikal[zaehlerSensorBild]);		//button Sensor Vertikal
+				
+				if(radioButton[12].isSelected())
+					gewaehltesBild.setIcon(radioButton[12].getIcon());
+				if(radioButton[13].isSelected())
+					gewaehltesBild.setIcon(radioButton[13].getIcon());
 				
 			}
 			
@@ -225,53 +221,6 @@ public class LabelTest extends JFrame{
 				labelGitter[i][j] = new JLabel(leer);
 				gridRechts.add(labelGitter[i][j]);
 				
-				class IconMouseListener extends MouseAdapter{
-					
-					private int xKoordinate;
-					private int yKoordinate;
-					
-					public IconMouseListener(int xKoordinate, int yKoordinate) {
-						// TODO Auto-generated constructor stub
-						this.xKoordinate = xKoordinate;
-						this.yKoordinate = yKoordinate;
-					}
-
-					public void mouseClicked(MouseEvent e) {
-						
-						if(kreuzButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(kreuz);
-						else if(leerButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(leer);
-						else if(vertikalButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(vertical);
-						else if(horizontalButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(horizontal);
-						else if(lStueckObenLinksButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckObenLinks);
-						else if(lStueckObenRechtsButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckObenRechts);
-						else if(lStueckUntenLinksButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckUntenLinks);
-						else if(lStueckUntenRechtsButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(lStueckUntenRechts);
-						else if(tStueckLinksButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckLinks);
-						else if(tStueckObenButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckOben);
-						else if(tStueckRechtsButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckRechts);
-						else if(tStueckUntenButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(tStueckUnten);
-						else if(sensorHorizontalButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(sensorHorizontal[zaehlerSensorBild]);
-						else if(sensorVertikalButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(sensorVertikal[zaehlerSensorBild]);
-						else if(ventilHorizontalButton.isSelected())
-							labelGitter[xKoordinate][yKoordinate].setIcon(ventilHorizontal);
-						else
-							labelGitter[xKoordinate][yKoordinate].setIcon(pumpe);
-					}
-				}
 				labelGitter[i][j].addMouseListener(new IconMouseListener(i,j));
 				
 			}
@@ -309,75 +258,108 @@ public class LabelTest extends JFrame{
 	}
 
 	private void initRadioButtons() {
-		
-		kreuzButton =new JRadioButton(kreuz); //Kreuzrohrstueck
-		kreuzButton.setSelected(true);
-		leerButton = new JRadioButton(leer);
-		
-		horizontalButton = new JRadioButton(horizontal);
-		vertikalButton = new JRadioButton(vertical);
-		
-		lStueckObenLinksButton = new JRadioButton(lStueckObenLinks); //L-Rohrstuecke
-		lStueckObenRechtsButton = new JRadioButton(lStueckObenRechts);
-		lStueckUntenLinksButton = new JRadioButton(lStueckUntenLinks);
-		lStueckUntenRechtsButton = new JRadioButton(lStueckUntenRechts);
-		
-		tStueckLinksButton = new JRadioButton(tStueckLinks); //T-Rohrstuecke
-		tStueckObenButton = new JRadioButton(tStueckOben);
-		tStueckRechtsButton = new JRadioButton(tStueckRechts);
-		tStueckUntenButton = new JRadioButton(tStueckUnten);
-		
-		sensorHorizontalButton = new JRadioButton(sensorHorizontal[0]); //Sensoren
-		sensorVertikalButton = new JRadioButton(sensorVertikal[0]);
-		
-		ventilHorizontalButton = new JRadioButton(ventilHorizontal); //Ventil
-		pumpeButton = new JRadioButton(pumpe); //Pumpe
-		
-		
+
 		buttonGroup = new ButtonGroup();
-		buttonGroup.add(kreuzButton);
-		buttonGroup.add(leerButton);
+		radioButton = new JRadioButton[16];
 		
-		buttonGroup.add(horizontalButton);
-		buttonGroup.add(vertikalButton);
+		radioButton[0] = new JRadioButton(kreuz); //Kreuzrohrstueck
+		radioButton[0].setSelected(true);
+		radioButton[1] = new JRadioButton(leer);
 		
-		buttonGroup.add(lStueckObenLinksButton);
-		buttonGroup.add(lStueckObenRechtsButton);
-		buttonGroup.add(lStueckUntenLinksButton);
-		buttonGroup.add(lStueckUntenRechtsButton);
+		radioButton[2] = new JRadioButton(vertical); //gerade Stücke
+		radioButton[3] = new JRadioButton(horizontal);
 		
-		buttonGroup.add(tStueckLinksButton);
-		buttonGroup.add(tStueckObenButton);
-		buttonGroup.add(tStueckRechtsButton);
-		buttonGroup.add(tStueckUntenButton);
+		radioButton[4] = new JRadioButton(lStueckObenLinks); //L-Rohrstuecke
+		radioButton[5] = new JRadioButton(lStueckObenRechts);
+		radioButton[6] = new JRadioButton(lStueckUntenLinks);
+		radioButton[7] = new JRadioButton(lStueckUntenRechts);
 		
-		buttonGroup.add(sensorHorizontalButton);
-		buttonGroup.add(sensorVertikalButton);
+		radioButton[8] = new JRadioButton(tStueckLinks); //T-Rohrstuecke
+		radioButton[9] = new JRadioButton(tStueckOben);
+		radioButton[10] = new JRadioButton(tStueckRechts);
+		radioButton[11] = new JRadioButton(tStueckUnten);
 		
-		buttonGroup.add(ventilHorizontalButton);
-		buttonGroup.add(pumpeButton);
+		radioButton[12] = new JRadioButton(sensorHorizontal[0]); //Sensoren
+		radioButton[13] = new JRadioButton(sensorVertikal[0]);
 		
-		gridLinks.add(kreuzButton);
-		gridLinks.add(leerButton);
-		gridLinks.add(horizontalButton);
-		gridLinks.add(vertikalButton);
-		gridLinks.add(lStueckObenLinksButton);
-		gridLinks.add(lStueckObenRechtsButton);
-		gridLinks.add(lStueckUntenLinksButton);
-		gridLinks.add(lStueckUntenRechtsButton);
-		gridLinks.add(tStueckLinksButton);
-		gridLinks.add(tStueckObenButton);
-		gridLinks.add(tStueckRechtsButton);
-		gridLinks.add(tStueckUntenButton);
-		gridLinks.add(sensorHorizontalButton);
-		gridLinks.add(sensorVertikalButton);
-		gridLinks.add(ventilHorizontalButton);
-		gridLinks.add(pumpeButton);
+		radioButton[14] = new JRadioButton(ventilHorizontal); //Ventil
+		radioButton[15] = new JRadioButton(pumpe); //Pumpe
+		
+		for(int i=0;i<radioButton.length;i++){	//radioButtons in eine Gruppe zusammenführen
+			buttonGroup.add(radioButton[i]);
+			gridLinks.add(radioButton[i]);
+			radioButton[i].addActionListener(new RadioButtonActionListener(i));
+		
+		}
+		
 	}
 	
 	public void setSensorTextFieldInhalt(String sensorTextField, int nummerTextField) {
 		this.sensorTextField[nummerTextField].setText(sensorTextField);
 		//sensorTextField[0]
+	}
+	
+	class RadioButtonActionListener implements ActionListener{
+
+		int nummerDesRadioButtons;
+		
+		public RadioButtonActionListener(int nummerDesRadioButtons) {
+			// TODO Auto-generated constructor stub
+			this.nummerDesRadioButtons = nummerDesRadioButtons;
+		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			gewaehltesBild.setIcon(radioButton[nummerDesRadioButtons].getIcon());
+		}	
+	}
+	
+	class IconMouseListener extends MouseAdapter{
+		
+		private int xKoordinate;
+		private int yKoordinate;
+		
+		public IconMouseListener(int xKoordinate, int yKoordinate) {
+			// TODO Auto-generated constructor stub
+			this.xKoordinate = xKoordinate;
+			this.yKoordinate = yKoordinate;
+		}
+
+		public void mouseClicked(MouseEvent e) {
+			
+			if(radioButton[0].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(kreuz);
+			else if(radioButton[1].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(leer);
+			else if(radioButton[2].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(vertical);
+			else if(radioButton[3].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(horizontal);
+			else if(radioButton[4].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(lStueckObenLinks);
+			else if(radioButton[5].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(lStueckObenRechts);
+			else if(radioButton[6].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(lStueckUntenLinks);
+			else if(radioButton[7].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(lStueckUntenRechts);
+			else if(radioButton[8].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(tStueckLinks);
+			else if(radioButton[9].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(tStueckOben);
+			else if(radioButton[10].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(tStueckRechts);
+			else if(radioButton[11].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(tStueckUnten);
+			else if(radioButton[12].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(sensorHorizontal[zaehlerSensorBild]);
+			else if(radioButton[13].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(sensorVertikal[zaehlerSensorBild]);
+			else if(radioButton[14].isSelected())
+				labelGitter[xKoordinate][yKoordinate].setIcon(ventilHorizontal);
+			else
+				labelGitter[xKoordinate][yKoordinate].setIcon(pumpe);
+		}
 	}
 
 }
