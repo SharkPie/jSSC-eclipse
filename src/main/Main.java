@@ -22,7 +22,7 @@ public class Main {
 			//SerialPortControll serialPort = new SerialPortControll();
 			//serialPort.addObserver(viewControl);
 			//serialPort.getEventPort();
-			viewControl.setLabelTestView();
+			viewControl.setHauptfensterView();
 		
 
 	}

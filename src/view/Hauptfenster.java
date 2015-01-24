@@ -32,7 +32,7 @@ import javax.swing.JTextField;
 
 
 @SuppressWarnings("serial")
-public class LabelTest extends JFrame{
+public class Hauptfenster extends JFrame{
 	
 	int anzahlSensor; //Anzahl der zu ueberwachenden Sensoren
 	int zaehlerSensorBild;
@@ -76,7 +76,7 @@ public class LabelTest extends JFrame{
 	
 	JLabel[][] labelGitter; //2-D Array zum anordnen der Rohrstuecke
 	
-	public LabelTest(int anzahlSensor, ViewControl actionListener){
+	public Hauptfenster(int anzahlSensor, ViewControl actionListener){
 		// TODO Auto-generated constructor stub
 		this.anzahlSensor = anzahlSensor;
 		this.zaehlerSensorBild = 0;

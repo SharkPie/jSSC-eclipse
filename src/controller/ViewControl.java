@@ -23,7 +23,7 @@ public class ViewControl implements Observer, ActionListener{
     
     private MainWindow view;
     private DrawBoard drawBoard;
-    private LabelTest labelTest;
+    private Hauptfenster labelTest;
     private SerialPortControll serialPort;
     private AnzahlSensorenPopUp popUp;
     
@@ -41,8 +41,8 @@ public class ViewControl implements Observer, ActionListener{
     	
     }
     
-    public void setLabelTestView(){
-    	labelTest = new LabelTest(1, this);
+    public void setHauptfensterView(){
+    	labelTest = new Hauptfenster(1, this);
     	}
 
 	public void update(Observable arg0, Object ausgelesenerString) {
@@ -55,7 +55,6 @@ public class ViewControl implements Observer, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		String cmd = event.getActionCommand();
-		System.out.println(cmd);
 		switch(cmd){
 		
 		case "Speichern":
