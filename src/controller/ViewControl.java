@@ -25,11 +25,13 @@ public class ViewControl implements Observer, ActionListener{
     private DrawBoard drawBoard;
     private LabelTest labelTest;
     private SerialPortControll serialPort;
+    private AnzahlSensorenPopUp popUp;
     
     public ViewControl() {
 
     	serialPort = new SerialPortControll();
     	serialPort.getEventPort();
+    	popUp = new AnzahlSensorenPopUp(this);
     }
     
     
@@ -81,8 +83,12 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 			
 		case "Anzahl Sensoren":
-			labelTest.initSensorLabels(3);
-			//labelTest.setSensorTextFieldInhalt("test", 2);
+			popUp.setVisible(labelTest.getAnzahlSensor());
+			break;
+			
+		case "OK":
+			labelTest.setSensorLabels(popUp.getAnzahlSensoren());
+			popUp.dispose();
 			break;
 			
 		}

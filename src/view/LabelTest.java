@@ -119,7 +119,9 @@ public class LabelTest extends JFrame{
 		
 		initMenuBar();
 		
-		initSensorLabels(3);
+		initSensorLabels();
+		
+		setSensorLabels(1);
 		
 		initRadioButtons();
 		
@@ -130,6 +132,16 @@ public class LabelTest extends JFrame{
 		initZeichenflaeche();
 		
 		initWindow();
+	}
+
+	private void initSensorLabels() {
+		sensorLabel = new JLabel[5];
+		sensorTextField = new JTextField[5];
+		for(int i=0;i<5;i++){
+			sensorLabel[i] = new JLabel();
+			sensorTextField[i] = new JTextField("000,000,000");
+			sensorTextField[i].setEditable(false);
+		}
 	}
 
 	private void initSensorErhöhenButton() { //Buttons zur Sensor Manipulation erstellen
@@ -180,29 +192,28 @@ public class LabelTest extends JFrame{
 		gridLinks.add(sensorMinus);
 	}
 
-	public void initSensorLabels(int anzahl) { //Visualisierung der Sensor Daten
+	public void setSensorLabels(int anzahl) { //Visualisierung der Sensor Daten
 		anzahlSensor = anzahl;
 		gridSouth.removeAll();
-		sensorLabel = new JLabel[anzahlSensor];
-		sensorTextField = new JTextField[anzahlSensor];
-		
 		
 		for(int i=0;i<anzahlSensor;i++){
 			StringBuilder sb = new StringBuilder();
 			sb.append("Sensor ");
 			sb.append(i+1);
-			sensorLabel[i] = new JLabel(sb.toString());
+			sensorLabel[i].setText(sb.toString());
 			gridSouth.add(sensorLabel[i]);
+			this.getContentPane().validate();
+			this.getContentPane().repaint();
 			}
+		
 		for(int i=0;i<anzahlSensor;i++){
-			sensorTextField[i] = new JTextField("000,000,000");
-			sensorTextField[i].setEditable(false);
 			gridSouth.add(sensorTextField[i]);
+			this.getContentPane().validate();
+			this.getContentPane().repaint();
 		}
-		gridSouth.repaint();
 		
 	}
-
+	
 	private void initMenuBar() { //Menu Bar zum steuern der Anwendung
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -356,6 +367,9 @@ public class LabelTest extends JFrame{
 	public void setLabelGitterTooltip(String sensorWert, int[] position){
 		labelGitter[position[0]][position[1]].setToolTipText(sensorWert);
 		
+	}
+	public int getAnzahlSensor() {
+		return anzahlSensor;
 	}
 	
 	class RadioButtonActionListener implements ActionListener{
