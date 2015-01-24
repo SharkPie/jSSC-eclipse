@@ -19,46 +19,19 @@ import java.util.regex.Pattern;
 import view.*;
 import model.*;
 
-public class ViewControl implements Observer{
+public class ViewControl implements Observer, ActionListener{
     
     private MainWindow view;
     private DrawBoard drawBoard;
     private LabelTest labelTest;
+    private SerialPortControll serialPort;
     
     public ViewControl() {
-        this.view = new MainWindow();
 
-        addListener();
+    	serialPort = new SerialPortControll();
+    	serialPort.getEventPort();
     }
     
-    
-    public void showView() {
-        this.view.setVisible(true);
-        this.view.validate();
-        
-    }
-    
-    private void addListener() {
-    	this.view.setExitButtonListener(new ExitButtonListener());
-    	this.view.setRefreshButtonListener(new RefreshButtonListener());
-    }
-    
-    
-    class ExitButtonListener implements ActionListener {
-
-		
-		public void actionPerformed(ActionEvent e) {
-			System.exit(0);
-		}
-    	
-    }
-    
-    class RefreshButtonListener implements ActionListener {
-
-    	public void actionPerformed(ActionEvent e) {
-    	}
-    	
-    }
     
     public void setDrawBoardView(){
     	this.drawBoard = new DrawBoard();
@@ -67,13 +40,53 @@ public class ViewControl implements Observer{
     }
     
     public void setLabelTestView(){
-    	labelTest = new LabelTest(3);
-    }
+    	labelTest = new LabelTest(1, this);
+    	}
 
-	public void update(Observable arg0, Object arg1) {
-		String[] sensorWerte = arg1.toString().split(Pattern.quote(":"));
+	public void update(Observable arg0, Object ausgelesenerString) {
+		String[] sensorWerte = ausgelesenerString.toString().split(Pattern.quote(":"));
 		labelTest.setSensorTextFieldInhalt(sensorWerte[1],new Integer(sensorWerte[0]));
 		labelTest.setLabelGitterTooltip(sensorWerte[1], labelTest.getSensorFields(new Integer(sensorWerte[0])));
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		String cmd = event.getActionCommand();
+		System.out.println(cmd);
+		switch(cmd){
+		
+		case "Speichern":
+			break;
+			
+		case "Laden":
+			break;
+			
+		case "About":
+			break;
+		
+		case "Exit":
+			break;
+		
+		case "ComPort auswählen":
+			break;
+		
+		case "ComPort starten":
+			serialPort.deleteObservers();
+			serialPort.addObserver(this);
+			break;
+			
+		case "ComPort stoppen":
+			serialPort.deleteObservers();
+			break;
+			
+		case "Anzahl Sensoren":
+			labelTest.initSensorLabels(3);
+			//labelTest.setSensorTextFieldInhalt("test", 2);
+			break;
+			
+		}
+		
 	}
     
 }

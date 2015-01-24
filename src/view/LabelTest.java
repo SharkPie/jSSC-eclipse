@@ -9,6 +9,8 @@
 
 package view;
 
+import controller.ViewControl;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -34,6 +36,8 @@ public class LabelTest extends JFrame{
 	
 	int anzahlSensor; //Anzahl der zu ueberwachenden Sensoren
 	int zaehlerSensorBild;
+	
+	ViewControl actionListener;
 	
 	JPanel borderLayout; //Hauptfenster
 	JPanel gridSouth; //im JPanel "borderLayout" eingebettet, Sensordaten
@@ -72,10 +76,12 @@ public class LabelTest extends JFrame{
 	
 	JLabel[][] labelGitter; //2-D Array zum anordnen der Rohrstuecke
 	
-	public LabelTest(int anzahlSensor){
+	public LabelTest(int anzahlSensor, ViewControl actionListener){
 		// TODO Auto-generated constructor stub
 		this.anzahlSensor = anzahlSensor;
 		this.zaehlerSensorBild = 0;
+		
+		this.actionListener = actionListener;
 		
 		kreuz = new ImageIcon("pics/Kreuz.png");							//Laden aller Bilder
 		leer = new ImageIcon("pics/Leer.png");
@@ -113,7 +119,7 @@ public class LabelTest extends JFrame{
 		
 		initMenuBar();
 		
-		initSensorLabels();
+		initSensorLabels(3);
 		
 		initRadioButtons();
 		
@@ -134,7 +140,6 @@ public class LabelTest extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//System.out.println(zaehlerSensorBild);
 				if(zaehlerSensorBild==anzahlSensor-1)
 					zaehlerSensorBild = -1;
 				
@@ -175,9 +180,12 @@ public class LabelTest extends JFrame{
 		gridLinks.add(sensorMinus);
 	}
 
-	private void initSensorLabels() { //Visualisierung der Sensor Daten
+	public void initSensorLabels(int anzahl) { //Visualisierung der Sensor Daten
+		anzahlSensor = anzahl;
+		gridSouth.removeAll();
 		sensorLabel = new JLabel[anzahlSensor];
 		sensorTextField = new JTextField[anzahlSensor];
+		
 		
 		for(int i=0;i<anzahlSensor;i++){
 			StringBuilder sb = new StringBuilder();
@@ -191,17 +199,44 @@ public class LabelTest extends JFrame{
 			sensorTextField[i].setEditable(false);
 			gridSouth.add(sensorTextField[i]);
 		}
+		gridSouth.repaint();
+		
 	}
 
 	private void initMenuBar() { //Menu Bar zum steuern der Anwendung
 		JMenuBar menuBar = new JMenuBar();
-		JMenu menu = new JMenu("File");
-		JMenuItem menuItemSelect = new JMenuItem("Select ComPort");
-		JMenuItem menuItemClose = new JMenuItem("Close ComPort");
 		
-		menu.add(menuItemSelect);
-		menu.add(menuItemClose);
-		menuBar.add(menu);
+		JMenu fileMenu = new JMenu("File");
+		JMenuItem[] menuItemFile = new JMenuItem[4];
+		menuItemFile[0] = new JMenuItem("Speichern");
+		menuItemFile[1] = new JMenuItem("Laden");
+		menuItemFile[2] = new JMenuItem("About");
+		menuItemFile[3] = new JMenuItem("Exit");
+		
+		for(int i=0;i<menuItemFile.length;i++){
+			fileMenu.add(menuItemFile[i]);
+			menuItemFile[i].addActionListener(actionListener);
+		}
+		menuBar.add(fileMenu);
+		
+		JMenu comPortMenu = new JMenu("ComPort");
+		JMenuItem[] menuItemComPort = new JMenuItem[3];
+		menuItemComPort[0] = new JMenuItem("ComPort auswählen");
+		menuItemComPort[1] = new JMenuItem("ComPort starten");
+		menuItemComPort[2] = new JMenuItem("ComPort stoppen");
+		
+		for(int i=0;i<menuItemComPort.length;i++){
+			comPortMenu.add(menuItemComPort[i]);
+			menuItemComPort[i].addActionListener(actionListener);
+		}
+		menuBar.add(comPortMenu);
+		
+		JMenu sensorMenu = new JMenu("Sensor");
+		JMenuItem menuItemSensor = new JMenuItem("Anzahl Sensoren");
+		menuItemSensor.addActionListener(actionListener);
+		sensorMenu.add(menuItemSensor);
+		menuBar.add(sensorMenu);
+		
 		setJMenuBar(menuBar);
 		this.setJMenuBar(menuBar);
 	}
@@ -299,7 +334,7 @@ public class LabelTest extends JFrame{
 	}
 	
 	public void setSensorTextFieldInhalt(String sensorTextField, int nummerTextField) {
-		this.sensorTextField[nummerTextField].setText(sensorTextField);
+		this.sensorTextField[nummerTextField-1].setText(sensorTextField);
 	}
 	
 	public int[] getSensorFields(int sensorNummer){

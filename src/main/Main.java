@@ -9,8 +9,6 @@
 
 package main;
 
-import model.SerialPortControll;
-import view.DrawBoard;
 import controller.*;
 
 public class Main {
@@ -21,9 +19,9 @@ public class Main {
 			System.out.println("Start");
 			viewControl = new ViewControl();
 			
-			SerialPortControll serialPort = new SerialPortControll();
-			serialPort.addObserver(viewControl);
-			serialPort.getEventPort();
+			//SerialPortControll serialPort = new SerialPortControll();
+			//serialPort.addObserver(viewControl);
+			//serialPort.getEventPort();
 			viewControl.setLabelTestView();
 		
 
