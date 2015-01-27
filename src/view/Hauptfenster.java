@@ -217,7 +217,7 @@ public class Hauptfenster extends JFrame{
 	private void initMenuBar() { //Menu Bar zum steuern der Anwendung
 		JMenuBar menuBar = new JMenuBar();
 		
-		JMenu fileMenu = new JMenu("File");
+		JMenu fileMenu = new JMenu("File");				//File Bereich
 		JMenuItem[] menuItemFile = new JMenuItem[4];
 		menuItemFile[0] = new JMenuItem("Speichern");
 		menuItemFile[1] = new JMenuItem("Laden");
@@ -230,7 +230,7 @@ public class Hauptfenster extends JFrame{
 		}
 		menuBar.add(fileMenu);
 		
-		JMenu comPortMenu = new JMenu("ComPort");
+		JMenu comPortMenu = new JMenu("ComPort");		//ComPort Bereich
 		JMenuItem[] menuItemComPort = new JMenuItem[3];
 		menuItemComPort[0] = new JMenuItem("ComPort auswählen");
 		menuItemComPort[1] = new JMenuItem("ComPort starten");
@@ -242,7 +242,7 @@ public class Hauptfenster extends JFrame{
 		}
 		menuBar.add(comPortMenu);
 		
-		JMenu sensorMenu = new JMenu("Sensor");
+		JMenu sensorMenu = new JMenu("Sensor");				//Sensor Bereich
 		JMenuItem menuItemSensor = new JMenuItem("Anzahl Sensoren");
 		menuItemSensor.addActionListener(actionListener);
 		sensorMenu.add(menuItemSensor);
@@ -348,13 +348,12 @@ public class Hauptfenster extends JFrame{
 		this.sensorTextField[nummerTextField-1].setText(sensorTextField);
 	}
 	
-	public int[] getSensorFields(int sensorNummer){
-		int[] postion = new int[2];
+	public int[] getSensorFields(int sensorNummer){	//sucht die Position eines Sensores mit einer bestimmten Nummer
+		int[] postion = new int[2];					
 		for(int i=0;i<labelGitter.length;i++){
 			for(int j=0;j<labelGitter.length;j++){
 				if(labelGitter[i][j].getIcon().equals(sensorHorizontal[sensorNummer-1])
 						||labelGitter[i][j].getIcon().equals(sensorVertikal[sensorNummer-1])){
-					System.out.println(i+""+j);
 					postion[0] = i;
 					postion[1] = j;
 				}
@@ -364,16 +363,20 @@ public class Hauptfenster extends JFrame{
 		return postion;	
 	}
 	
-	public void setLabelGitterTooltip(String sensorWert, int[] position){
-		labelGitter[position[0]][position[1]].setToolTipText(sensorWert);
-		
+	public void setLabelGitterTooltip(String sensorWert, int[] position){//setzt ein Tooltip im LabelGitter 
+		labelGitter[position[0]][position[1]].setToolTipText(sensorWert);//auf eine übergegebene position
+																		//->Sensoren
 	}
 	public int getAnzahlSensor() {
 		return anzahlSensor;
 	}
 	
+	public void test(){
+		System.out.println(labelGitter[0][0].getIcon().toString());	
+	} 
+	
+	
 	class RadioButtonActionListener implements ActionListener{
-
 		int nummerDesRadioButtons;
 		
 		public RadioButtonActionListener(int nummerDesRadioButtons) {
@@ -388,7 +391,6 @@ public class Hauptfenster extends JFrame{
 	}
 	
 	class IconMouseListener extends MouseAdapter{
-		
 		private int xKoordinate;
 		private int yKoordinate;
 		

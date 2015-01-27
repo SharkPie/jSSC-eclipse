@@ -24,21 +24,21 @@ public class AnzahlSensorenPopUp extends JDialog{
 	
 	public AnzahlSensorenPopUp(ViewControl actionListener) {
 		
-		panel = new JPanel();
+		panel = new JPanel();					//Layout des Fensters
 		panel.setLayout(new GridLayout(2,2));
 		add(panel);
 		
-		label = new JLabel("Anzahl der Sensoren");
+		label = new JLabel("Anzahl der Sensoren");		//label
 		panel.add(label);
 		
-		Integer[] inhaltComboBox = new Integer[5];
+		Integer[] inhaltComboBox = new Integer[5];		//ComboBox
 		for(int i=0;i<inhaltComboBox.length;i++)
 			inhaltComboBox[i]=i+1;
 		
 		comboBox = new JComboBox<Integer>(inhaltComboBox);
 		panel.add(comboBox);
 		
-		ok = new JButton("OK");
+		ok = new JButton("OK");							//Buttons
 		ok.addActionListener(actionListener);
 		abbrechen = new JButton("Abbrechen");
 		panel.add(ok);
@@ -70,7 +70,7 @@ public class AnzahlSensorenPopUp extends JDialog{
 		setModal(true);
 	}
 	
-	public int getAnzahlSensoren(){
+	public int getAnzahlSensoren(){			//gibt das ausgewählte Element zurück
 		return (int) comboBox.getSelectedItem();
 	}
 

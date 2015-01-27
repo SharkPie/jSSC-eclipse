@@ -53,11 +53,13 @@ public class ViewControl implements Observer, ActionListener{
 
 
 	@Override
-	public void actionPerformed(ActionEvent event) {
+	public void actionPerformed(ActionEvent event) {//actionListener für die MenuButtons und PopUp Fenster Button
 		String cmd = event.getActionCommand();
 		switch(cmd){
 		
 		case "Speichern":
+			System.out.println("test");
+			labelTest.test();
 			break;
 			
 		case "Laden":
@@ -70,6 +72,7 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 		
 		case "ComPort auswählen":
+			//ComPortSelecter select = new ComPortSelecter();
 			break;
 		
 		case "ComPort starten":

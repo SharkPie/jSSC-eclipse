@@ -67,7 +67,7 @@ public class SerialPortControll extends Observable{
 						setChanged();
 						stringBuffer = stringBuffer.replace("\n\r", "");
 						notifyObservers(stringBuffer);
-//						System.out.println(stringBuffer);
+						System.out.println(stringBuffer);
 
 //						_view.setjLMesswert(stringBuffer);
 //						_view.setjTMesswert(stringBuffer);
