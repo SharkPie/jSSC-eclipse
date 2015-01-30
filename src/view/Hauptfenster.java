@@ -148,6 +148,9 @@ public class Hauptfenster extends JFrame{
 		sensorPlus = new JButton("Sensor +");
 		sensorMinus = new JButton("Sensor -");
 		
+		/*
+		 * 
+		 */
 		sensorPlus.addActionListener(new ActionListener(){
 
 			@Override

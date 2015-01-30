@@ -1,6 +1,6 @@
 /*
 * Datei: ViewControl.java
-*
+*Kontrolliert den Programmfluss
 *
 *
 *
@@ -11,7 +11,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.regex.Pattern;
@@ -21,8 +20,6 @@ import model.*;
 
 public class ViewControl implements Observer, ActionListener{
     
-    private MainWindow view;
-    private DrawBoard drawBoard;
     private Hauptfenster labelTest;
     private SerialPortControll serialPort;
     private AnzahlSensorenPopUp popUp;
@@ -35,16 +32,17 @@ public class ViewControl implements Observer, ActionListener{
     }
     
     
-    public void setDrawBoardView(){
-    	this.drawBoard = new DrawBoard();
-    	this.drawBoard.showView();
-    	
-    }
     
     public void setHauptfensterView(){
-    	labelTest = new Hauptfenster(1, this);
+    	labelTest = new Hauptfenster(1, this); //übergeben Anzahl der erwarteten Sensoren bei Programmstart, ActionListener
     	}
-
+/*
+ * (non-Javadoc)
+ * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+ * wird ausgeführt, wenn SerialPortControll einen Wert am ComPort anliegt
+ * Datenstruktur: x:y x=Nummer des Sensors, y = Sensordaten
+ * Setzen des Textfield Inhaltes und des Tooltips für die passende SensorNummer
+ */
 	public void update(Observable arg0, Object ausgelesenerString) {
 		String[] sensorWerte = ausgelesenerString.toString().split(Pattern.quote(":"));
 		labelTest.setSensorTextFieldInhalt(sensorWerte[1],new Integer(sensorWerte[0]));
@@ -69,6 +67,7 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 		
 		case "Exit":
+			System.exit(0);
 			break;
 		
 		case "ComPort auswählen":
@@ -88,7 +87,7 @@ public class ViewControl implements Observer, ActionListener{
 			popUp.setVisible(labelTest.getAnzahlSensor());
 			break;
 			
-		case "OK":
+		case "OK"://umbennen
 			labelTest.setSensorLabels(popUp.getAnzahlSensoren());
 			popUp.dispose();
 			break;
