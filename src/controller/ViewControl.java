@@ -23,6 +23,7 @@ public class ViewControl implements Observer, ActionListener{
     private Hauptfenster labelTest;
     private SerialPortControll serialPort;
     private AnzahlSensorenPopUp popUp;
+    private String test;
     
     public ViewControl() {
 
@@ -56,11 +57,11 @@ public class ViewControl implements Observer, ActionListener{
 		switch(cmd){
 		
 		case "Speichern":
-			System.out.println("test");
-			labelTest.test();
+			this.test = labelTest.speichern();
 			break;
 			
 		case "Laden":
+			labelTest.laden(test);
 			break;
 			
 		case "About":

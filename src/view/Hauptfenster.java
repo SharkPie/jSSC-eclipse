@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Pattern;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -374,9 +375,26 @@ public class Hauptfenster extends JFrame{
 		return anzahlSensor;
 	}
 	
-	public void test(){
-		System.out.println(labelGitter[0][0].getIcon().toString());	
-	} 
+	public String speichern(){
+		StringBuilder speichernString = new StringBuilder();
+		for(int i=0;i<labelGitter.length;i++){
+			for(int j=0;j<labelGitter.length;j++){
+				speichernString.append(labelGitter[i][j].getIcon().toString());
+				speichernString.append(":");
+			}
+		}
+		return speichernString.toString();
+	}
+	
+	public void laden(String ladenString){
+		String[] splitString = ladenString.split(Pattern.quote(":"));
+		for(int i=0;i<labelGitter.length;i++){
+			for(int j=0;j<labelGitter.length;j++){
+				int image = i * labelGitter.length + j;
+				labelGitter[i][j].setIcon(new ImageIcon(splitString[image]));
+			}
+		}
+	}
 	
 	
 	class RadioButtonActionListener implements ActionListener{
