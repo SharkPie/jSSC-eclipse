@@ -37,9 +37,9 @@ public class SerialPortControll extends Observable{
 		return portNames;
 	}
 
-	public void getEventPort() {
+	public void getEventPort(String comPort) {
 
-		serialPort = new SerialPort("COM3"); 
+		serialPort = new SerialPort(comPort); 
 		try {
 			serialPort.openPort();//Open port
 			serialPort.setParams(38400, 8, 1, 0); //ComPort Paramter festlegen, Baud, Datenbits, Stopbits, Parität

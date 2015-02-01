@@ -38,7 +38,7 @@ public class AnzahlSensorenPopUp extends JDialog{
 		comboBox = new JComboBox<Integer>(inhaltComboBox);
 		panel.add(comboBox);
 		
-		ok = new JButton("OK");							//Buttons
+		ok = new JButton("Sensor auswählen");							//Buttons
 		ok.addActionListener(actionListener);
 		abbrechen = new JButton("Abbrechen");
 		panel.add(ok);

@@ -24,11 +24,12 @@ public class ViewControl implements Observer, ActionListener{
     private SerialPortControll serialPort;
     private AnzahlSensorenPopUp popUp;
     private String test;
+    private ComPortSelecter selectComPort;
     
     public ViewControl() {
 
     	serialPort = new SerialPortControll();
-    	serialPort.getEventPort();
+    	//serialPort.getEventPort();
     	popUp = new AnzahlSensorenPopUp(this);
     }
     
@@ -72,7 +73,7 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 		
 		case "ComPort auswählen":
-			//ComPortSelecter select = new ComPortSelecter();
+			selectComPort = new ComPortSelecter(this);
 			break;
 		
 		case "ComPort starten":
@@ -88,9 +89,16 @@ public class ViewControl implements Observer, ActionListener{
 			popUp.setVisible(labelTest.getAnzahlSensor());
 			break;
 			
-		case "OK"://umbennen
+		case "Sensor auswählen":
 			labelTest.setSensorLabels(popUp.getAnzahlSensoren());
 			popUp.dispose();
+			break;
+		case "ComPort wahl":
+			//System.out.println(selectComPort.getComPort());
+			//serialPort.getEventPort(selectComPort.getComPort());
+			//selectComPort.dispose();
+			//selectComPort.setVisible(false);
+
 			break;
 			
 		}
