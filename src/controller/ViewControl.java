@@ -31,6 +31,7 @@ public class ViewControl implements Observer, ActionListener{
     	serialPort = new SerialPortControll();
     	//serialPort.getEventPort();
     	popUp = new AnzahlSensorenPopUp(this);
+    	selectComPort = new ComPortSelecter(this);
     }
     
     
@@ -73,7 +74,7 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 		
 		case "ComPort auswählen":
-			selectComPort = new ComPortSelecter(this);
+			selectComPort.setComPortSelecterVisible();
 			break;
 		
 		case "ComPort starten":
@@ -94,11 +95,8 @@ public class ViewControl implements Observer, ActionListener{
 			popUp.dispose();
 			break;
 		case "ComPort wahl":
-			//System.out.println(selectComPort.getComPort());
-			//serialPort.getEventPort(selectComPort.getComPort());
-			//selectComPort.dispose();
-			//selectComPort.setVisible(false);
-
+			serialPort.getEventPort(selectComPort.getComPort());
+			selectComPort.setDispose();
 			break;
 			
 		}
