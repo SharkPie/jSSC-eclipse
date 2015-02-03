@@ -20,7 +20,7 @@ import model.*;
 
 public class ViewControl implements Observer, ActionListener{
     
-    private Hauptfenster labelTest;
+    private Hauptfenster hauptfenster;
     private SerialPortControll serialPort;
     private AnzahlSensorenPopUp popUp;
     private String test;
@@ -37,7 +37,7 @@ public class ViewControl implements Observer, ActionListener{
     
     
     public void setHauptfensterView(){
-    	labelTest = new Hauptfenster(1, this); //übergeben Anzahl der erwarteten Sensoren bei Programmstart, ActionListener
+    	hauptfenster = new Hauptfenster(1, this); //übergeben Anzahl der erwarteten Sensoren bei Programmstart, ActionListener
     	}
 /*
  * (non-Javadoc)
@@ -48,8 +48,16 @@ public class ViewControl implements Observer, ActionListener{
  */
 	public void update(Observable arg0, Object ausgelesenerString) {
 		String[] sensorWerte = ausgelesenerString.toString().split(Pattern.quote(":"));
-		labelTest.setSensorTextFieldInhalt(sensorWerte[1],new Integer(sensorWerte[0]));
-		labelTest.setLabelGitterTooltip(sensorWerte[1], labelTest.getSensorFields(new Integer(sensorWerte[0])));
+		String[] einzelneSensorWerte = sensorWerte[1].split(Pattern.quote(","));
+		hauptfenster.setSensorTextFieldInhalt(einzelneSensorWerte[1],new Integer(sensorWerte[0]));
+		StringBuilder sb = new StringBuilder();
+		sb.append("Overall: ");
+		sb.append(einzelneSensorWerte[0]);
+		sb.append("LPM: ");
+		sb.append(einzelneSensorWerte[1]);
+		sb.append("LPH: ");
+		sb.append(einzelneSensorWerte[2]);
+		hauptfenster.setLabelGitterTooltip(sb.toString(), hauptfenster.getSensorFields(new Integer(sensorWerte[0])));
 	}
 
 
@@ -59,11 +67,11 @@ public class ViewControl implements Observer, ActionListener{
 		switch(cmd){
 		
 		case "Speichern":
-			this.test = labelTest.speichern();
+			this.test = hauptfenster.speichern();
 			break;
 			
 		case "Laden":
-			labelTest.laden(test);
+			hauptfenster.laden(test);
 			break;
 			
 		case "About":
@@ -87,11 +95,11 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 			
 		case "Anzahl Sensoren":
-			popUp.setVisible(labelTest.getAnzahlSensor());
+			popUp.setVisible(hauptfenster.getAnzahlSensor());
 			break;
 			
 		case "Sensor auswählen":
-			labelTest.setSensorLabels(popUp.getAnzahlSensoren());
+			hauptfenster.setSensorLabels(popUp.getAnzahlSensoren());
 			popUp.dispose();
 			break;
 		case "ComPort wahl":

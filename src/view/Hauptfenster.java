@@ -140,7 +140,7 @@ public class Hauptfenster extends JFrame{
 		sensorTextField = new JTextField[5];
 		for(int i=0;i<5;i++){
 			sensorLabel[i] = new JLabel();
-			sensorTextField[i] = new JTextField("000,000,000");
+			sensorTextField[i] = new JTextField("0.000");
 			sensorTextField[i].setEditable(false);
 		}
 	}

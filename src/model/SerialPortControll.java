@@ -31,9 +31,6 @@ public class SerialPortControll extends Observable{
 	//Die ComPorts müssen nicht zwingend von dem Programm auslesbar/darstellbar sein.
 	public String[] getComPorts() {
 		String[] portNames = SerialPortList.getPortNames();
-		for (int i = 0; i < portNames.length; i++) {
-			System.out.println(portNames[i]);
-		}
 		return portNames;
 	}
 
