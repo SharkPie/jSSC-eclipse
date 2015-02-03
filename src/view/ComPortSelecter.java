@@ -22,18 +22,18 @@ public class ComPortSelecter extends JDialog {
 	
 	public ComPortSelecter(ActionListener actionListener){
 		
-		ComPortFenster = new JDialog();
+		ComPortFenster = new JDialog();					// Neues Dialogfenster
 		ComPortFenster.setTitle("ComPort auswählen");
 		ComPortFenster.setSize(300, 110);
 
 		
 		JPanel panel1 = new JPanel();
 		
-		ComPort comportAusgabe = new ComPort();
-		String boxInhalt[] = comportAusgabe.getComPorts();
-			ComPortBox = new JComboBox<String>(boxInhalt);
+		ComPort comportAusgabe = new ComPort();				// Klasse ComPort wird initialisiert
+		String boxInhalt[] = comportAusgabe.getComPorts();		// Ausgabe der Methode getComPorts() wird in boxInhalt geschrieben
+		ComPortBox = new JComboBox<String>(boxInhalt);			// Die ComPorts werden nun in der ComboBox angezeigt
 		
-		Dimension sizeBox = new Dimension(280, 25);
+		Dimension sizeBox = new Dimension(280, 25);			// Größe der ComboBox wird implementiert
 		ComPortBox.setPreferredSize(sizeBox);
 		
 		JButton OKButton = new JButton("ComPort wahl");
@@ -50,7 +50,7 @@ public class ComPortSelecter extends JDialog {
 		panel1.add(ComPortBox);
 		panel1.add(OKButton);
 		ComPortFenster.add(panel1);
-		ComPortFenster.setModal(true);
+		ComPortFenster.setModal(true);					
 		
 	}
 	
@@ -58,11 +58,11 @@ public class ComPortSelecter extends JDialog {
 		ComPortFenster.setVisible(true);
 	}
 	
-	public void setDispose(){
+	public void setDispose(){						// Durch die Methode dispose() wird das Dialogfenster komplett geschlossen
 		ComPortFenster.dispose();
 	}
 	
-	public String getComPort(){
+	public String getComPort(){						// Das ausgewählte ComPort wird zurückgegeben
 		return (String) ComPortBox.getSelectedItem();
 	}
 
