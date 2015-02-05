@@ -14,6 +14,9 @@ import javax.swing.JComboBox;
 
 import model.ComPort;
 
+/*
+* Fenster zur Auswahl des ComPorts
+*/
 @SuppressWarnings("serial")
 public class ComPortSelecter extends JDialog {
 	
@@ -54,15 +57,24 @@ public class ComPortSelecter extends JDialog {
 		
 	}
 	
+	/*
+	* Sichtbarkeit des Fensters
+	*/
 	public void setComPortSelecterVisible(){
 		ComPortFenster.setVisible(true);
 	}
 	
-	public void setDispose(){						// Durch die Methode dispose() wird das Dialogfenster komplett geschlossen
+	/*
+	* Durch die Methode dispose() wird das Dialogfenster komplett geschlossen
+	*/
+	public void setDispose(){
 		ComPortFenster.dispose();
 	}
 	
-	public String getComPort(){						// Das ausgewählte ComPort wird zurückgegeben
+	/*
+	* Getter Methode, der ausgewählte ComPort wird zurückgegeben
+	*/
+	public String getComPort(){						// 
 		return (String) ComPortBox.getSelectedItem();
 	}
 

@@ -26,6 +26,10 @@ public class ViewControl implements Observer, ActionListener{
     private String test;
     private ComPortSelecter selectComPort;
     
+
+    /*
+    *
+    */
     public ViewControl() {
 
     	serialPort = new SerialPortControll();
@@ -35,7 +39,9 @@ public class ViewControl implements Observer, ActionListener{
     }
     
     
-    
+    /*
+	* Startet das Hauptfenster
+	*/
     public void setHauptfensterView(){
     	hauptfenster = new Hauptfenster(1, this); //übergeben Anzahl der erwarteten Sensoren bei Programmstart, ActionListener
     	}
@@ -61,8 +67,11 @@ public class ViewControl implements Observer, ActionListener{
 	}
 
 
+	/*
+	* actionListener für die MenuButtons des Hauptfensters und PopUp Fenster Button
+	*/
 	@Override
-	public void actionPerformed(ActionEvent event) {//actionListener für die MenuButtons und PopUp Fenster Button
+	public void actionPerformed(ActionEvent event) {
 		String cmd = event.getActionCommand();
 		switch(cmd){
 		

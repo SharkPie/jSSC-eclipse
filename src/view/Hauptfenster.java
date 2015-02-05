@@ -31,7 +31,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-
 @SuppressWarnings("serial")
 public class Hauptfenster extends JFrame{
 	
@@ -77,6 +76,9 @@ public class Hauptfenster extends JFrame{
 	
 	JLabel[][] labelGitter; //2-D Array zum anordnen der Rohrstuecke
 	
+	/*
+	* 
+	*/
 	public Hauptfenster(int anzahlSensor, ViewControl actionListener){
 		// TODO Auto-generated constructor stub
 		this.anzahlSensor = anzahlSensor;
@@ -84,7 +86,7 @@ public class Hauptfenster extends JFrame{
 		
 		this.actionListener = actionListener;
 		
-		kreuz = new ImageIcon("pics/Kreuz.png");							//Laden aller Bilder
+		kreuz = new ImageIcon("pics/Kreuz.png"); //Laden aller Bilder
 		leer = new ImageIcon("pics/Leer.png");
 		horizontal = new ImageIcon("pics/Horizontal.png");
 		vertical = new ImageIcon("pics/Vertikal.png");
