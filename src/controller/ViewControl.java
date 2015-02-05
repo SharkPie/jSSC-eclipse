@@ -28,12 +28,11 @@ public class ViewControl implements Observer, ActionListener{
     
 
     /*
-    *
+    *Konstruktor: initialisiert die popUp Fenster
     */
     public ViewControl() {
 
     	serialPort = new SerialPortControll();
-    	//serialPort.getEventPort();
     	popUp = new AnzahlSensorenPopUp(this);
     	selectComPort = new ComPortSelecter(this);
     }

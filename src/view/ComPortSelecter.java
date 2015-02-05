@@ -1,7 +1,5 @@
 package view;
 
-import jssc.*;
-
 import java.awt.Dimension;
 
 import javax.swing.*;
@@ -12,7 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JComboBox;
 
-import model.ComPort;
+import model.SerialPortControll;
 
 /*
 * Fenster zur Auswahl des ComPorts
@@ -32,7 +30,7 @@ public class ComPortSelecter extends JDialog {
 		
 		JPanel panel1 = new JPanel();
 		
-		ComPort comportAusgabe = new ComPort();				// Klasse ComPort wird initialisiert
+		SerialPortControll comportAusgabe = new SerialPortControll();				// Klasse ComPort wird initialisiert
 		String boxInhalt[] = comportAusgabe.getComPorts();		// Ausgabe der Methode getComPorts() wird in boxInhalt geschrieben
 		ComPortBox = new JComboBox<String>(boxInhalt);			// Die ComPorts werden nun in der ComboBox angezeigt
 		

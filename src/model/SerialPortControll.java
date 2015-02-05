@@ -68,13 +68,7 @@ public class SerialPortControll extends Observable{
 
 						setChanged();
 						stringBuffer = stringBuffer.replace("\n\r", "");
-						notifyObservers(stringBuffer);
-						System.out.println(stringBuffer); //kann das raus?!?
-
-//						_view.setjLMesswert(stringBuffer);
-//						_view.setjTMesswert(stringBuffer);
-//						_view.validate();
-						
+						notifyObservers(stringBuffer);						
 					}
 					catch (SerialPortException ex) {
 						System.out.print(ex);
@@ -83,7 +77,7 @@ public class SerialPortControll extends Observable{
 			}
 			else if(event.isCTS()){
 				if(event.getEventValue() == 1){
-					System.out.println("CTS - ON"); //Wird dieser Code jemals erreicht?!?
+					System.out.println("CTS - ON"); //Wird dieser Code jemals erreicht?!? lustiger weise kann das sogar passieren
 				}
 				else {
 					System.out.println("CTS - OFF");

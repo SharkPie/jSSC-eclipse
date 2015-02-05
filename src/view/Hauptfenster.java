@@ -77,7 +77,7 @@ public class Hauptfenster extends JFrame{
 	JLabel[][] labelGitter; //2-D Array zum anordnen der Rohrstuecke
 	
 	/*
-	* 
+	* Konstruktor: übergeben wird die Anzahl der Senoren zu Begin sowie ein Actionlistener für das menu
 	*/
 	public Hauptfenster(int anzahlSensor, ViewControl actionListener){
 		// TODO Auto-generated constructor stub
@@ -152,7 +152,8 @@ public class Hauptfenster extends JFrame{
 		sensorMinus = new JButton("Sensor -");
 		
 		/*
-		 * 
+		 * Actionlistener für die Sensor + und - Buttons
+		 * ändert die Ziffer des Sensoren Radiobuttons
 		 */
 		sensorPlus.addActionListener(new ActionListener(){
 
@@ -377,6 +378,7 @@ public class Hauptfenster extends JFrame{
 		return anzahlSensor;
 	}
 	
+	//gibt zu Speicherenden String zurück
 	public String speichern(){
 		StringBuilder speichernString = new StringBuilder();
 		for(int i=0;i<labelGitter.length;i++){
@@ -388,6 +390,7 @@ public class Hauptfenster extends JFrame{
 		return speichernString.toString();
 	}
 	
+	//erstellt aus übergebenden String das LabelGitter neu
 	public void laden(String ladenString){
 		String[] splitString = ladenString.split(Pattern.quote(":"));
 		for(int i=0;i<labelGitter.length;i++){
@@ -398,7 +401,9 @@ public class Hauptfenster extends JFrame{
 		}
 	}
 	
-	
+	/* ActionListener für die RadioButtons
+	 * ändert die Anzeige des Ausgewählten RadionButtons bei klick ab
+	*/
 	class RadioButtonActionListener implements ActionListener{
 		int nummerDesRadioButtons;
 		
@@ -413,6 +418,10 @@ public class Hauptfenster extends JFrame{
 		}	
 	}
 	
+	/*
+	 * MouseListener für das LabelGitter
+	 * ändert das Bild eines einzelnen Labels auf das bereits durch den RadioButtons ausgewählte Bild
+	 */
 	class IconMouseListener extends MouseAdapter{
 		private int xKoordinate;
 		private int yKoordinate;
