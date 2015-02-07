@@ -25,6 +25,8 @@ public class ViewControl implements Observer, ActionListener{
     private AnzahlSensorenPopUp popUp;
     private String speichernString;
     private ComPortSelecter selectComPort;
+    private XmlWriter xml;
+    private String comPortString;
     
 
     /*
@@ -35,6 +37,8 @@ public class ViewControl implements Observer, ActionListener{
     	serialPort = new SerialPortControll();
     	popUp = new AnzahlSensorenPopUp(this);
     	selectComPort = new ComPortSelecter(this);
+    	xml = new XmlWriter();
+    	comPortString = null;
     }
     
     
@@ -76,9 +80,11 @@ public class ViewControl implements Observer, ActionListener{
 		
 		case "Speichern":
 			this.speichernString = hauptfenster.speichern();
+			this.xml.writeXml(speichernString);
 			break;
 			
 		case "Laden":
+			speichernString = xml.readXml();
 			hauptfenster.laden(speichernString);
 			break;
 			
@@ -94,11 +100,13 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 		
 		case "ComPort starten":
+			serialPort.getEventPort(comPortString);
 			serialPort.deleteObservers();
 			serialPort.addObserver(this);
 			break;
 			
 		case "ComPort stoppen":
+			serialPort.close();
 			serialPort.deleteObservers();
 			break;
 			
@@ -111,7 +119,8 @@ public class ViewControl implements Observer, ActionListener{
 			popUp.dispose();
 			break;
 		case "ComPort wahl":
-			serialPort.getEventPort(selectComPort.getComPort());
+			comPortString = selectComPort.getComPort();
+			//serialPort.getEventPort(selectComPort.getComPort());
 			selectComPort.setDispose();
 			break;
 			

@@ -12,6 +12,7 @@ package model;
 import java.util.Observable;
 
 
+
 //import view.*;
 import jssc.*;
 
@@ -91,6 +92,15 @@ public class SerialPortControll extends Observable{
 					System.out.println("DSR - OFF");
 				}
 			}
+		}
+	}
+	
+	public void close(){
+		try {
+			serialPort.closePort();
+		} catch (SerialPortException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
