@@ -89,6 +89,7 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 			
 		case "About":
+			About newAbout = new About();
 			break;
 		
 		case "Exit":
