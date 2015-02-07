@@ -101,7 +101,7 @@ public class Hauptfenster extends JFrame{
 		tStueckUnten = getBild("/pictures/TStueckUnten.png");
 		tStueckLinks = getBild("/pictures/TStueckLinks.png");
 		tStueckRechts = getBild("/pictures/TStueckRechts.png");
-		ventilHorizontal = getBild("/pictures/ventilHorizontal.png");
+		ventilHorizontal = getBild("/pictures/VentilHorizontal.png");
 		sensorHorizontal = new ImageIcon[5];
 		sensorVertikal = new ImageIcon[5];
 		for(int i=0;i<5;i++){
@@ -140,6 +140,9 @@ public class Hauptfenster extends JFrame{
 		initWindow();
 	}
 	
+	/*
+	 * Nötig damit Bilder in der Runnable jar anzeigt werden
+	 */
 	private ImageIcon getBild(String path)
 	{
 	    URL url = getClass().getResource(path);
@@ -293,6 +296,7 @@ public class Hauptfenster extends JFrame{
 		setSize(800,500);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
+		setTitle("Durchfluss Board");
 		setVisible(true);
 	}
 
@@ -411,17 +415,22 @@ public class Hauptfenster extends JFrame{
 		}
 	}
 	
+/*
+ * unterteilt übergebenen String in "/pictures/name.png" zum Laden von Bildern
+ */
+	
 	public String bildString(String bildPfad){
 		char[] bildPfadArray = bildPfad.toCharArray();
 		int anzahlSlash = 0;
 		int i = bildPfadArray.length-1;
-		while(anzahlSlash<2){
+		while(anzahlSlash<1){								//Array von hinten durchgehen bis zum ersten /
 			if(bildPfadArray[i]=='/')
 				anzahlSlash++;
 			i--;
 		}
-		StringBuilder sb = new StringBuilder();
-		for(int j=i+1;j<bildPfadArray.length;j++)
+		StringBuilder sb = new StringBuilder();				//String bauen /pictures/name.png
+		sb.append("/pictures");
+		for(int j=i+1;j<bildPfadArray.length;j++)		
 			sb.append(bildPfadArray[j]);
 		return sb.toString();		
 	}

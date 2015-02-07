@@ -23,7 +23,7 @@ public class ViewControl implements Observer, ActionListener{
     private Hauptfenster hauptfenster;
     private SerialPortControll serialPort;
     private AnzahlSensorenPopUp popUp;
-    private String test;
+    private String speichernString;
     private ComPortSelecter selectComPort;
     
 
@@ -75,11 +75,11 @@ public class ViewControl implements Observer, ActionListener{
 		switch(cmd){
 		
 		case "Speichern":
-			this.test = hauptfenster.speichern();
+			this.speichernString = hauptfenster.speichern();
 			break;
 			
 		case "Laden":
-			hauptfenster.laden(test);
+			hauptfenster.laden(speichernString);
 			break;
 			
 		case "About":
