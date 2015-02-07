@@ -77,7 +77,7 @@ public class SerialPortControll extends Observable{
 			}
 			else if(event.isCTS()){
 				if(event.getEventValue() == 1){
-					System.out.println("CTS - ON"); //Wird dieser Code jemals erreicht?!? lustiger weise kann das sogar passieren
+					System.out.println("CTS - ON"); 
 				}
 				else {
 					System.out.println("CTS - OFF");
