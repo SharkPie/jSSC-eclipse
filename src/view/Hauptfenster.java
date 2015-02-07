@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.URL;
 import java.util.regex.Pattern;
 
 import javax.swing.ButtonGroup;
@@ -86,37 +87,39 @@ public class Hauptfenster extends JFrame{
 		
 		this.actionListener = actionListener;
 		
-		kreuz = new ImageIcon("pics/Kreuz.png"); //Laden aller Bilder
-		leer = new ImageIcon("pics/Leer.png");
-		horizontal = new ImageIcon("pics/Horizontal.png");
-		vertical = new ImageIcon("pics/Vertikal.png");
-		lStueckObenLinks = new ImageIcon("pics/LStueckObenLinks.png");
-		lStueckObenRechts = new ImageIcon("pics/LStueckObenRechts.png");
-		lStueckUntenLinks = new ImageIcon("pics/LStueckUntenLinks.png");
-		lStueckUntenRechts = new ImageIcon("pics/LStueckUntenRechts.png");
-		tStueckOben = new ImageIcon("pics/TStueckOben.png");
-		tStueckUnten = new ImageIcon("pics/TStueckUnten.png");
-		tStueckLinks = new ImageIcon("pics/TStueckLinks.png");
-		tStueckRechts = new ImageIcon("pics/TStueckRechts.png");
-		ventilHorizontal = new ImageIcon("pics/ventilHorizontal.png");
+				//Laden aller Bilder
+//		kreuz = new ImageIcon(("resource/pictures/Kreuz.png"));
+		kreuz = getBild("/pictures/Kreuz.png");
+		leer = getBild("/pictures/Leer.png");
+		horizontal = getBild("/pictures/Horizontal.png");
+		vertical = getBild("/pictures/Vertikal.png");
+		lStueckObenLinks = getBild("/pictures/LStueckObenLinks.png");
+		lStueckObenRechts = getBild("/pictures/LStueckObenRechts.png");
+		lStueckUntenLinks = getBild("/pictures/LStueckUntenLinks.png");
+		lStueckUntenRechts = getBild("/pictures/LStueckUntenRechts.png");
+		tStueckOben = getBild("/pictures/TStueckOben.png");
+		tStueckUnten = getBild("/pictures/TStueckUnten.png");
+		tStueckLinks = getBild("/pictures/TStueckLinks.png");
+		tStueckRechts = getBild("/pictures/TStueckRechts.png");
+		ventilHorizontal = getBild("/pictures/ventilHorizontal.png");
 		sensorHorizontal = new ImageIcon[5];
 		sensorVertikal = new ImageIcon[5];
 		for(int i=0;i<5;i++){
 			StringBuilder sbHorizontal = new StringBuilder();
-			sbHorizontal.append("pics/SensorHorizontal");
+			sbHorizontal.append("/pictures/SensorHorizontal");
 			sbHorizontal.append(i+1);
 			sbHorizontal.append(".png");
-			sensorHorizontal[i] = new ImageIcon(sbHorizontal.toString());
+			sensorHorizontal[i] = getBild(sbHorizontal.toString());
 			
 			StringBuilder sbVertikal = new StringBuilder();
-			sbVertikal.append("pics/SensorVertikal");
+			sbVertikal.append("/pictures/SensorVertikal");
 			sbVertikal.append(i+1);
 			sbVertikal.append(".png");
-			sensorVertikal[i] = new ImageIcon(sbVertikal.toString());
+			sensorVertikal[i] = getBild(sbVertikal.toString());
 			
 		}
 		
-		pumpe = new ImageIcon("pics/Pumpe.png");
+		pumpe = getBild("/pictures/Pumpe.png");
 
 		initLayout(); //initialisieren der einzelen Teile, die das Hauptfenster darstellen
 		
@@ -136,7 +139,13 @@ public class Hauptfenster extends JFrame{
 		
 		initWindow();
 	}
-
+	
+	private ImageIcon getBild(String path)
+	{
+	    URL url = getClass().getResource(path);
+	    return (new ImageIcon(url));
+	}
+	
 	private void initSensorLabels() {
 		sensorLabel = new JLabel[5];
 		sensorTextField = new JTextField[5];
@@ -384,7 +393,7 @@ public class Hauptfenster extends JFrame{
 		for(int i=0;i<labelGitter.length;i++){
 			for(int j=0;j<labelGitter.length;j++){
 				speichernString.append(labelGitter[i][j].getIcon().toString());
-				speichernString.append(":");
+				speichernString.append(";");
 			}
 		}
 		return speichernString.toString();
@@ -392,15 +401,30 @@ public class Hauptfenster extends JFrame{
 	
 	//erstellt aus übergebenden String das LabelGitter neu
 	public void laden(String ladenString){
-		String[] splitString = ladenString.split(Pattern.quote(":"));
+		String[] splitString = ladenString.split(Pattern.quote(";"));
+		
 		for(int i=0;i<labelGitter.length;i++){
 			for(int j=0;j<labelGitter.length;j++){
 				int image = i * labelGitter.length + j;
-				labelGitter[i][j].setIcon(new ImageIcon(splitString[image]));
+				labelGitter[i][j].setIcon(getBild(bildString(splitString[image])));
 			}
 		}
 	}
 	
+	public String bildString(String bildPfad){
+		char[] bildPfadArray = bildPfad.toCharArray();
+		int anzahlSlash = 0;
+		int i = bildPfadArray.length-1;
+		while(anzahlSlash<2){
+			if(bildPfadArray[i]=='/')
+				anzahlSlash++;
+			i--;
+		}
+		StringBuilder sb = new StringBuilder();
+		for(int j=i+1;j<bildPfadArray.length;j++)
+			sb.append(bildPfadArray[j]);
+		return sb.toString();		
+	}
 	/* ActionListener für die RadioButtons
 	 * ändert die Anzeige des Ausgewählten RadionButtons bei klick ab
 	*/
