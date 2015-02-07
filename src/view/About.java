@@ -28,7 +28,7 @@ public class About extends JDialog {
 		creditials = new JTextArea("\n\nDüll, Vincent\n\nGrüber, "
 				+ "Dominik\n\nSommer, Fabian\n\nToptan, Bekir Emre\n");
 		creditials.setEditable(false);
-		creditials.setBackground(Color.DARK_GRAY);
+		creditials.setBackground(Color.lightGray);
 		panel.add(creditials,BorderLayout.CENTER);
 		ok = new JButton("OK");
 		panel.add(ok, BorderLayout.SOUTH);
