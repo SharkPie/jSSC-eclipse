@@ -127,9 +127,9 @@ public class Hauptfenster extends JFrame{
 		
 		initSensorLabels();
 		
-		setSensorLabels(1);
-		
 		initRadioButtons();
+		
+		setSensorLabels(1);
 		
 		initAusgewaehltBild();
 		
@@ -231,6 +231,10 @@ public class Hauptfenster extends JFrame{
 			this.getContentPane().repaint();
 		}
 		
+		radioButton[12].setIcon(sensorHorizontal[0]);
+		radioButton[13].setIcon(sensorVertikal[0]);
+		
+		zaehlerSensorBild = 0;
 	}
 	
 	private void initMenuBar() { //Menu Bar zum steuern der Anwendung
