@@ -15,6 +15,8 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.regex.Pattern;
 
+import javax.swing.JOptionPane;
+
 import view.*;
 import model.*;
 
@@ -84,9 +86,12 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 			
 		case "Laden":
+			try{
 			speichernString = xml.readXml();
 			hauptfenster.laden(speichernString);
-			break;
+			}catch (Exception e){
+				System.err.println("Fehler in XML");
+			}break;
 			
 		case "About":
 			About newAbout = new About();
@@ -100,15 +105,24 @@ public class ViewControl implements Observer, ActionListener{
 			selectComPort.setComPortSelecterVisible();
 			break;
 		
-		case "ComPort starten":
-			serialPort.getEventPort(comPortString);
-			serialPort.deleteObservers();
-			serialPort.addObserver(this);
+		case "ComPort starten": 
+			if(comPortString == null){
+				JOptionPane.showMessageDialog(null, "Es wurde kein Comport ausgewählt", "Fehler!", JOptionPane.ERROR_MESSAGE);
+			}else{
+				serialPort.getEventPort(comPortString);
+				serialPort.deleteObservers();
+				serialPort.addObserver(this);
+			}
+			
 			break;
 			
 		case "ComPort stoppen":
+			try{
 			serialPort.close();
 			serialPort.deleteObservers();
+			}catch(Exception e){
+				JOptionPane.showMessageDialog(null, "Comport wurde nicht gestartet!", "Fehler!", JOptionPane.ERROR_MESSAGE);
+			}
 			break;
 			
 		case "Anzahl Sensoren":

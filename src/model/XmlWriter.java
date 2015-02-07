@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 
+import javax.swing.JOptionPane;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -40,8 +41,7 @@ public class XmlWriter {
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			klasse =  (SpeicherStringClass) jaxbUnmarshaller.unmarshal(file);
 		}catch (JAXBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Es konnte keine Datei gefunden werden!", "Fehler!", JOptionPane.ERROR_MESSAGE);
 		}
 		returnString = klasse.getSpeicherString();
 		return returnString;
