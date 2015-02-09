@@ -18,13 +18,10 @@ import jssc.*;
 
 public class SerialPortControll extends Observable{
 
-	//private MainWindow _view;
-	
 	static SerialPort serialPort;
 	String stringBuffer = new String();
 	
 	public SerialPortControll() {
-		//this._view = new MainWindow();
 		
 	}
 
@@ -61,15 +58,17 @@ public class SerialPortControll extends Observable{
 	class SerialPortReader implements SerialPortEventListener {
 
 		public void serialEvent(SerialPortEvent event) {
+			
 			if(event.isRXCHAR()){ //prüft ob Daten am ComPort anliegen
-				if(event.getEventValue() == 24){ //Überprüft Anzahl Bytes im Input Buffer
+				if(event.getEventValue() % 47 == 0){ //Überprüft Anzahl Bytes im Input Buffer
 					try {
-						byte buffer[] = serialPort.readBytes(24);
+						
+						byte buffer[] = serialPort.readBytes(47);
 						stringBuffer = new String(buffer); //schreibt Daten in den stringBuffer
 
 						setChanged();
 						stringBuffer = stringBuffer.replace("\n\r", "");
-						notifyObservers(stringBuffer);						
+						notifyObservers(stringBuffer);		
 					}
 					catch (SerialPortException ex) {
 						System.out.print(ex);

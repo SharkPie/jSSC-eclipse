@@ -106,9 +106,11 @@ public class ViewControl implements Observer, ActionListener{
 			break;
 		
 		case "ComPort starten": 
+			System.out.println(comPortString);
 			if(comPortString == null){
 				JOptionPane.showMessageDialog(null, "Es wurde kein Comport ausgewählt", "Fehler!", JOptionPane.ERROR_MESSAGE);
 			}else{
+				System.out.println("test");
 				serialPort.getEventPort(comPortString);
 				serialPort.deleteObservers();
 				serialPort.addObserver(this);
