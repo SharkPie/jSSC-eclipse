@@ -129,7 +129,7 @@ public class Hauptfenster extends JFrame{
 		
 		initRadioButtons();
 		
-		setSensorLabels(1);
+		setSensorLabels(anzahlSensor);
 		
 		initAusgewaehltBild();
 		
