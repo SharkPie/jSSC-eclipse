@@ -59,6 +59,7 @@ public class ViewControl implements Observer, ActionListener{
  */
 	public void update(Observable arg0, Object ausgelesenerString) {
 		String[] sensorWerte = ausgelesenerString.toString().split(Pattern.quote(":"));
+		try{
 		String[] einzelneSensorWerte = sensorWerte[1].split(Pattern.quote(","));
 		hauptfenster.setSensorTextFieldInhalt(einzelneSensorWerte[1],new Integer(sensorWerte[0]));
 		StringBuilder sb = new StringBuilder();
@@ -69,6 +70,7 @@ public class ViewControl implements Observer, ActionListener{
 		sb.append("LPH: ");
 		sb.append(einzelneSensorWerte[2]);
 		hauptfenster.setLabelGitterTooltip(sb.toString(), hauptfenster.getSensorFields(new Integer(sensorWerte[0])));
+		}catch (Exception e){System.out.println(e);}
 	}
 
 
